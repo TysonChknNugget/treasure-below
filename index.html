@@ -3,393 +3,690 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Treasure Below: a medieval mining RPG on Roblox. Mine, forge legendary gear, tame pets and fight into the endless Goblin Kingdom.">
-<meta property="og:title" content="Treasure Below">
-<meta property="og:description" content="A medieval mining RPG on Roblox. Now with the endless Goblin Kingdom.">
-<title>Treasure Below</title>
-<link rel="icon" href="icon.png">
+<title>Treasure Below Wiki</title>
+<meta name="description" content="The Treasure Below wiki: every pickaxe, ore, weapon, shield, armor set, enchant, boss, monster, pet, quest and badge in the Roblox mining RPG.">
+<meta property="og:title" content="Treasure Below Wiki">
+<meta property="og:description" content="Every pickaxe, ore, enchant, boss and pet in Treasure Below, the medieval mining RPG on Roblox.">
 <meta property="og:image" content="thumbnail.png">
+<link rel="icon" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one long dig. Each section is a soil stratum, a little darker and deeper than the
-   last, with a "core sample" rail down the left edge on wide screens. */
+/* Layout: a mine-shaft wiki. A sticky top bar with search, a tab column down the left (a row of
+   tabs on phones), and the page in the middle. Dark soil palette, rarity colours carry meaning. */
 :root {
   color-scheme: dark;
-  --soil-1: #3a2e25;
-  --soil-2: #2c241e;
-  --soil-3: #221c18;
-  --soil-4: #191513;
-  --soil-5: #12100f;
-  --bedrock: #0c0b0b;
-  --parchment: #efe2c4;
+  --bg: #15110f;
+  --bg-2: #1c1714;
+  --panel: #221c18;
+  --panel-2: #2a231e;
+  --line: #3a3029;
+  --text: #efe2c4;
   --muted: #b3a283;
   --faint: #7d6f5a;
   --gold: #e8b84a;
+  --gold-deep: #8a6215;
   --ember: #ff6a2b;
   --jade: #6ee07a;
-  --line: rgba(239, 226, 196, 0.14);
-  --panel: rgba(239, 226, 196, 0.05);
 
-  --r-common: #a9a59c; --r-uncommon: #7fcf6a; --r-rare: #5aa8f0; --r-epic: #b46cff;
-  --r-legendary: #ffa53a; --r-mythic: #ff5c7a; --r-divine: #fff1a8; --r-celestial: #ffd56a;
-  --r-abyssal: #3ce8d6; --r-primordial: #aaff46; --r-ancient: #ffcb3c;
+  --r-common: #b4b0a6; --r-uncommon: #7fcf6a; --r-rare: #5aa8f0; --r-epic: #b46cff;
+  --r-legendary: #ffa53a; --r-mythic: #ff5c7a; --r-divine: #fff1a8; --r-celestial: #ffbe6a;
+  --r-abyssal: #3ce8d6; --r-primordial: #aaff46; --r-ancient: #ffcb3c; --r-exclusive: #f5e6b0;
+  --t-bronze: #cd8a4e; --t-silver: #c9ced6; --t-gold: #e8b84a; --t-mythic: #ff5c7a;
 
   --display: "IM Fell English SC", "Iowan Old Style", Georgia, serif;
   --body: "Alegreya Sans", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
+  --top: 60px;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
-body { margin: 0; background: var(--bedrock); color: var(--parchment); font-family: var(--body); font-size: 17px; line-height: 1.55; }
-a { color: var(--gold); }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
-h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; }
-h2 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.05; letter-spacing: 0.01em; }
-h3 { font-size: 1.35rem; line-height: 1.15; }
-p { margin: 0; max-width: 65ch; }
-.label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+a { color: var(--gold); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.05; }
+h2 { font-size: 1.7rem; line-height: 1.1; }
+h3 { font-size: 1.25rem; line-height: 1.15; }
+p { margin: 0; max-width: 70ch; }
+.label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.mono, .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.faint { color: var(--faint); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
-/* strata */
-.stratum { position: relative; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: clamp(56px, 9vw, 96px); }
-.stratum::before { /* the ragged seam between layers */
-  content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 14px;
-  background: linear-gradient(135deg, var(--seam) 25%, transparent 25%) 0 0 / 22px 14px,
-              linear-gradient(225deg, var(--seam) 25%, transparent 25%) 0 0 / 22px 14px;
-}
-.inner { max-width: 1080px; margin: 0 auto; display: grid; gap: 28px; }
-.head { display: grid; gap: 10px; }
+/* top bar */
+.top { position: sticky; top: 0; z-index: 30; height: var(--top); display: flex; align-items: center; gap: 16px;
+  padding: 0 max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
+  background: linear-gradient(#2a3a22, #1e2a19); border-bottom: 3px solid #4a6a35; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--gold); font-family: var(--display); font-size: 1.45rem; white-space: nowrap; }
+.brand:hover { text-decoration: none; }
+.brand img { width: 34px; height: 34px; border-radius: 6px; }
+.brand small { font-family: var(--mono); font-size: 0.65rem; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; }
+.search { position: relative; flex: 1; max-width: 460px; margin-left: auto; }
+.search input { width: 100%; height: 38px; border-radius: 6px; border: 1px solid #4a5a3c; background: rgba(0,0,0,.35); color: var(--text); padding: 0 12px 0 34px; font: inherit; }
+.search::before { content: ""; position: absolute; left: 12px; top: 12px; width: 10px; height: 10px; border: 2px solid var(--muted); border-radius: 50%; }
+.search::after { content: ""; position: absolute; left: 22px; top: 23px; width: 6px; height: 2px; background: var(--muted); transform: rotate(45deg); }
+.results { position: absolute; top: 44px; left: 0; right: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; max-height: 60vh; overflow: auto; box-shadow: 0 12px 30px rgba(0,0,0,.5); }
+.results a { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; color: var(--text); border-bottom: 1px solid var(--line); }
+.results a:hover, .results a.on { background: var(--panel-2); text-decoration: none; }
+.results a span:last-child { color: var(--muted); font-size: .85rem; white-space: nowrap; }
+.play { background: var(--gold); color: #2a1d07; font-weight: 700; padding: 8px 14px; border-radius: 5px; box-shadow: 0 3px 0 var(--gold-deep); white-space: nowrap; }
+.play:hover { text-decoration: none; filter: brightness(1.08); }
+
+/* shell */
+.shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); min-height: calc(100vh - var(--top)); }
+nav.tabs { position: sticky; top: var(--top); align-self: start; height: calc(100vh - var(--top)); overflow: auto; padding: 18px 10px 30px max(10px, env(safe-area-inset-left, 0px)); background: var(--bg-2); border-right: 1px solid var(--line); }
+nav.tabs .group { margin: 14px 8px 6px; }
+nav.tabs a { display: block; padding: 6px 10px; border-radius: 5px; color: var(--text); font-size: .98rem; }
+nav.tabs a:hover { background: var(--panel); text-decoration: none; }
+nav.tabs a.on { background: var(--panel-2); color: var(--gold); box-shadow: inset 3px 0 0 var(--gold); }
+main { padding-block: 28px 80px; padding-left: max(16px, 2.2vw); padding-right: max(16px, env(safe-area-inset-right, 0px), 2.2vw); min-width: 0; }
+.page { max-width: 1120px; display: grid; gap: 22px; }
+.head { display: grid; gap: 8px; }
 .head p { color: var(--muted); }
 
-/* hero */
-.hero { --seam: transparent; background:
-  radial-gradient(120% 70% at 50% -10%, #5b7a46 0%, #3f5532 30%, transparent 60%),
-  linear-gradient(#4a3a2c, var(--soil-1)); padding-block: clamp(64px, 11vw, 120px) clamp(48px, 8vw, 80px); }
-.hero .inner { gap: 22px; }
-.grass { position: absolute; left: 0; right: 0; top: 0; height: 10px; background: repeating-linear-gradient(90deg, #6a9a4a 0 18px, #5b8a3e 18px 30px, #7aab55 30px 40px); }
-.hero h1 { font-size: clamp(3.2rem, 11vw, 7.5rem); line-height: 0.9; color: var(--gold); text-shadow: 0 3px 0 #6b4a16, 0 10px 30px rgba(0,0,0,.45); }
-.hero .tag { font-size: clamp(1.15rem, 2.6vw, 1.5rem); max-width: 40ch; }
-.loop { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--mono); font-size: 0.9rem; }
-.loop span.step { background: rgba(0,0,0,.28); border: 1px solid var(--line); padding: 6px 12px; border-radius: 3px; }
-.loop span.arrow { color: var(--gold); }
-.cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.btn { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: #2a1d07; font-weight: 700; text-decoration: none; padding: 13px 22px; border-radius: 4px; box-shadow: 0 4px 0 #8a6215; transition: transform .12s, box-shadow .12s; }
-.btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 #8a6215; }
-.btn.ghost { background: transparent; color: var(--parchment); box-shadow: none; border: 1px solid var(--line); }
-.platforms { color: var(--muted); font-size: 0.95rem; }
+/* tables */
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--bg-2); }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td.wrap { white-space: normal; min-width: 240px; }
+th { position: sticky; top: 0; background: var(--panel); font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; cursor: pointer; user-select: none; }
+th:hover { color: var(--text); }
+th.sorted { color: var(--gold); }
+th .arrow { opacity: .8; margin-left: 4px; }
+td.num, th.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: var(--panel); }
+tbody tr:last-child td { border-bottom: 0; }
+.name { font-weight: 700; }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; transform: rotate(45deg); margin-right: 9px; vertical-align: 1px; background: var(--c); }
 
-/* new update banner */
-.news { --seam: var(--soil-1); background: var(--soil-2); }
-.update { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; align-items: start; }
-.update .crown { border: 1px solid rgba(232,184,74,.35); background: linear-gradient(160deg, rgba(232,184,74,.12), transparent 60%); padding: 24px; border-radius: 6px; display: grid; gap: 14px; }
-.floors { display: grid; gap: 6px; }
-.floor { display: grid; grid-template-columns: 4.2rem minmax(0,1fr); gap: 12px; align-items: baseline; padding: 8px 0; border-bottom: 1px dashed var(--line); }
-.floor:last-child { border-bottom: 0; }
-.floor .n { font-family: var(--mono); color: var(--gold); font-size: 0.85rem; }
-.floor b { font-weight: 700; }
-.floor small { color: var(--muted); display: block; font-size: 0.92rem; }
-.bullets { display: grid; gap: 10px; padding: 0; margin: 0; list-style: none; }
-.bullets li { padding-left: 18px; position: relative; }
-.bullets li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); }
+.chip { display: inline-block; font-size: .78rem; padding: 1px 8px; border-radius: 99px; border: 1px solid var(--c); color: var(--c); white-space: nowrap; font-family: var(--body); }
+.tag { display: inline-block; font-size: .78rem; padding: 1px 7px; border-radius: 4px; background: var(--panel-2); color: var(--muted); margin-right: 4px; white-space: nowrap; }
 
-/* world */
-.world { --seam: var(--soil-2); background: var(--soil-3); }
-.zones { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
-.zone { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 18px 18px 16px; display: grid; gap: 8px; align-content: start; border-top: 3px solid var(--z); }
-.zone .unlock { font-family: var(--mono); font-size: 0.78rem; color: var(--z); }
-.zone p { color: var(--muted); font-size: 0.97rem; }
+/* filters */
+.filters { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.filters button { font: inherit; font-size: .88rem; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 99px; padding: 4px 12px; cursor: pointer; }
+.filters button:hover { border-color: var(--muted); }
+.filters button.on { background: var(--gold); color: #2a1d07; border-color: var(--gold); font-weight: 700; }
+.filters .sep { width: 1px; height: 20px; background: var(--line); margin: 0 6px; }
 
-/* ores */
-.ores { --seam: var(--soil-3); background: var(--soil-4); }
-.core-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
-.core { display: grid; gap: 3px; }
-.vein { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) 4.2rem; gap: 10px; align-items: center; font-size: 0.92rem; }
-.vein .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.vein .bar { height: 14px; border-radius: 2px; background: var(--c); box-shadow: inset 0 -3px 0 rgba(0,0,0,.25); }
-.vein .v { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
-.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.82rem; color: var(--muted); }
-.legend i { display: inline-block; width: 10px; height: 10px; background: var(--c); margin-right: 6px; transform: rotate(45deg); }
-.note { color: var(--faint); font-size: 0.85rem; }
+/* cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 12px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+a.card { color: var(--text); }
+a.card:hover { border-color: var(--c, var(--muted)); text-decoration: none; }
+.card .top-line { border-top: 3px solid var(--c); margin: -16px -16px 4px; border-radius: 8px 8px 0 0; }
+.card p { color: var(--muted); font-size: .95rem; }
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 16px; font-size: .95rem; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; }
 
-/* pickaxes */
-.picks { --seam: var(--soil-4); background: var(--soil-5); }
-.track-wrap { overflow-x: auto; padding-bottom: 8px; scrollbar-color: var(--faint) transparent; }
-.track { display: grid; grid-auto-flow: column; grid-auto-columns: 168px; gap: 10px; }
-.pick { background: var(--panel); border: 1px solid var(--line); border-radius: 5px; padding: 14px; display: grid; gap: 6px; align-content: start; border-bottom: 3px solid var(--c); min-height: 132px; }
-.pick .tier { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--c); }
-.pick .nm { font-weight: 700; line-height: 1.2; }
-.pick .price { font-family: var(--mono); font-size: 0.85rem; color: var(--gold); margin-top: auto; }
-.pick.star { background: linear-gradient(180deg, rgba(255,255,255,.06), transparent); }
-.pick .form { font-size: 0.85rem; color: var(--muted); }
+/* boss page */
+.hpbar { height: 12px; background: var(--panel-2); border-radius: 3px; position: relative; overflow: hidden; }
+.hpbar span { position: absolute; inset: 0 auto 0 0; background: var(--c); }
+.bosshead { border-left: 4px solid var(--c); padding-left: 16px; display: grid; gap: 6px; }
+.phases { display: grid; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.phases li { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 10px 14px; }
 
-/* bosses */
-.bosses { --seam: var(--soil-5); background: #100c0c; }
-.ladder { display: grid; gap: 4px; }
-.group { margin-top: 14px; }
-.group:first-child { margin-top: 0; }
-.group .label { margin-bottom: 6px; display: block; }
-.rung { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) 4.8rem; gap: 12px; align-items: center; padding: 3px 0; }
-.rung .who { font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.rung .who small { color: var(--muted); }
-.rung .track2 { height: 12px; background: rgba(239,226,196,.06); border-radius: 2px; position: relative; }
-.rung .fill { position: absolute; inset: 0 auto 0 0; background: var(--c, var(--ember)); border-radius: 2px; }
-.rung .hp { font-family: var(--mono); font-size: 0.82rem; text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
-.scale { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) 4.8rem; gap: 12px; }
-.scale .ticks { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.72rem; color: var(--faint); border-top: 1px solid var(--line); padding-top: 4px; }
+/* drawer */
+.drawer { position: fixed; top: var(--top); right: 0; bottom: 0; width: min(440px, 100%); background: var(--bg-2); border-left: 1px solid var(--line); z-index: 25; overflow: auto;
+  padding: 22px max(20px, env(safe-area-inset-right, 0px)) calc(30px + env(safe-area-inset-bottom, 0px)) 22px; box-shadow: -20px 0 40px rgba(0,0,0,.45); display: grid; gap: 14px; align-content: start; }
+.drawer .close { position: absolute; top: 14px; right: max(14px, env(safe-area-inset-right, 0px)); background: var(--panel); border: 1px solid var(--line); color: var(--text); border-radius: 6px; width: 34px; height: 34px; cursor: pointer; font-size: 1.1rem; }
+.drawer .eyebrow { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.drawer h2 { padding-right: 44px; }
+.desc { background: var(--panel); border-left: 3px solid var(--c, var(--gold)); padding: 10px 14px; border-radius: 0 6px 6px 0; }
+.bars { display: grid; gap: 4px; }
+.bar { display: grid; grid-template-columns: 9rem minmax(0, 1fr) 3.6rem; gap: 10px; align-items: center; font-size: .92rem; }
+.bar i { height: 10px; border-radius: 2px; background: var(--c); display: block; }
+.bar .track { background: var(--panel-2); border-radius: 2px; }
 
-/* pets & gear */
-.extras { --seam: #100c0c; background: var(--bedrock); }
-.two { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 28px; }
-.card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 22px; display: grid; gap: 14px; align-content: start; }
-.eggs { display: grid; gap: 6px; }
-.egg { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 12px; padding: 7px 0; border-bottom: 1px dashed var(--line); }
-.egg:last-child { border-bottom: 0; }
-.egg small { display: block; color: var(--muted); font-size: 0.88rem; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { font-size: 0.82rem; border: 1px solid var(--c); color: var(--c); padding: 2px 9px; border-radius: 99px; }
-.systems { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 14px; }
-.sys { display: grid; gap: 6px; }
-.sys h3 { font-size: 1.2rem; color: var(--gold); }
-.sys p { color: var(--muted); font-size: 0.95rem; }
+/* home */
+.hero { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background:
+  radial-gradient(120% 90% at 50% -20%, #5b7a46 0%, #3f5532 30%, transparent 62%), linear-gradient(#4a3a2c, #2c241e);
+  padding: clamp(24px, 5vw, 48px); display: grid; gap: 14px; position: relative; }
+.hero::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px; background: repeating-linear-gradient(90deg, #6a9a4a 0 18px, #5b8a3e 18px 30px, #7aab55 30px 40px); }
+.hero h1 { font-size: clamp(2.6rem, 8vw, 5rem); color: var(--gold); text-shadow: 0 3px 0 #6b4a16; line-height: .95; }
+.loop { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-family: var(--mono); font-size: .85rem; }
+.loop span { background: rgba(0,0,0,.28); border: 1px solid rgba(239,226,196,.15); padding: 4px 10px; border-radius: 3px; }
+.loop b { color: var(--gold); font-weight: 400; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.stats div { display: grid; }
+.stats b { font-family: var(--mono); font-size: 1.4rem; color: var(--gold); font-weight: 500; }
+.stats span { font-size: .85rem; color: var(--muted); }
 
-/* controls */
-.keys { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 8px 22px; }
-.key { display: flex; gap: 12px; align-items: center; }
-kbd { font-family: var(--mono); font-size: 0.8rem; min-width: 2.2rem; text-align: center; padding: 4px 8px; border-radius: 4px; background: #2a2420; border: 1px solid #4a3e33; box-shadow: 0 2px 0 #4a3e33; color: var(--parchment); }
+.steps { counter-reset: s; display: grid; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px; }
+.steps li::before { content: counter(s); font-family: var(--mono); color: var(--gold); font-size: 1.1rem; }
+.steps .lore { color: var(--muted); font-style: italic; font-size: .93rem; margin-top: 4px; }
+blockquote { margin: 0; padding: 10px 14px; border-left: 3px solid var(--gold); background: var(--panel); border-radius: 0 6px 6px 0; color: var(--muted); font-style: italic; }
+kbd { font-family: var(--mono); font-size: .8rem; min-width: 2.2rem; text-align: center; padding: 3px 8px; border-radius: 4px; background: #2a2420; border: 1px solid #4a3e33; box-shadow: 0 2px 0 #4a3e33; display: inline-block; }
+.note { color: var(--faint); font-size: .88rem; }
+footer { color: var(--faint); font-size: .85rem; margin-top: 30px; max-width: 1120px; }
 
-footer { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 56px; background: var(--bedrock); border-top: 1px solid var(--line); }
-footer .inner { gap: 10px; }
-footer p { color: var(--faint); font-size: 0.9rem; }
-
-@media (max-width: 760px) {
-  .update, .core-wrap, .two { grid-template-columns: minmax(0, 1fr); }
-  .rung, .scale { grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr) 4rem; gap: 8px; }
-  .rung .who small { display: none; }
-  .vein { grid-template-columns: 6rem minmax(0, 1fr) 3.4rem; }
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  nav.tabs { position: sticky; top: var(--top); z-index: 20; height: auto; display: flex; gap: 4px; overflow-x: auto; padding: 8px max(12px, env(safe-area-inset-right, 0px)) 8px max(12px, env(safe-area-inset-left, 0px)); border-right: 0; border-bottom: 1px solid var(--line); }
+  nav.tabs .group { display: none; }
+  nav.tabs a { white-space: nowrap; padding: 6px 10px; }
+  nav.tabs a.on { box-shadow: inset 0 -2px 0 var(--gold); }
+  .brand small, .play { display: none; }
+  main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .bar { grid-template-columns: 6.5rem minmax(0, 1fr) 3rem; }
 }
+@media (max-width: 520px) { .brand span.word { display: none; } }
 </style>
 </head>
 <body>
-
-<header class="stratum hero">
-  <div class="grass" aria-hidden="true"></div>
-  <div class="inner">
-    <span class="label">A medieval mining RPG on Roblox</span>
-    <h1>Treasure Below</h1>
-    <p class="tag">Dig through the Deep Mines, forge legendary gear, tame pets that grow into dragons, and fight your way into the Goblin Kingdom.</p>
-    <div class="loop" aria-label="The core loop">
-      <span class="step">Mine</span><span class="arrow">→</span>
-      <span class="step">Sell</span><span class="arrow">→</span>
-      <span class="step">Upgrade</span><span class="arrow">→</span>
-      <span class="step">Fight</span><span class="arrow">→</span>
-      <span class="step">Go deeper</span>
-    </div>
-    <div class="cta">
-      <a class="btn" href="https://www.roblox.com/games/139847927971793" target="_blank" rel="noopener">Play on Roblox</a>
-      <a class="btn ghost" href="#kingdom">What's new</a>
-      <span class="platforms">PC · Xbox · Mobile</span>
-    </div>
+<header class="top">
+  <a class="brand" href="#home"><img src="icon.png" alt=""><span class="word">Treasure Below</span> <small>Wiki</small></a>
+  <div class="search">
+    <input id="q" type="search" placeholder="Search pickaxes, enchants, bosses…" autocomplete="off" aria-label="Search the wiki">
+    <div class="results" id="results" hidden></div>
   </div>
+  <a class="play" href="https://www.roblox.com/games/139847927971793" target="_blank" rel="noopener">Play on Roblox</a>
 </header>
+<div class="shell">
+  <nav class="tabs" id="tabs" aria-label="Wiki sections"></nav>
+  <main id="main"></main>
+</div>
+<aside class="drawer" id="drawer" hidden aria-live="polite"></aside>
 
-<section class="stratum news" id="kingdom">
-  <div class="inner">
-    <div class="head">
-      <span class="label">New update · November 8, 2026</span>
-      <h2>The Goblin Kingdom</h2>
-      <p>An endless raid beneath the Goblin Fort. Beat Kragmaw the Warchief to open the gate, then clear floor after floor of the King's goblins for gold. Every run starts on floor 1.</p>
-    </div>
-    <div class="update">
-      <div class="crown">
-        <span class="label">A boss guards every 10th floor</span>
-        <div class="floors">
-          <div class="floor"><span class="n">Floor 10</span><div><b>Gorbag the Siegemaster</b><small>Bombs, mortar barrages and powder kegs</small></div></div>
-          <div class="floor"><span class="n">Floor 20</span><div><b>Nyxa the Hexblade</b><small>Vanishes, strikes from behind, calls Hex Shades</small></div></div>
-          <div class="floor"><span class="n">Floor 30</span><div><b>Grumhold the Iron Juggernaut</b><small>Ram charges, furnace blasts, Meltdown</small></div></div>
-          <div class="floor"><span class="n">Floor 40</span><div><b>Zogra the Beastmistress</b><small>Rides a war-boar. Charges, gores, stampedes</small></div></div>
-          <div class="floor"><span class="n">Floor 50</span><div><b>Mogrul the Goblin Emperor</b><small>Golden rain, his Imperial Guard, the Royal Decree</small></div></div>
-        </div>
-        <p class="note">Past floor 50 the five come back stronger, lap after lap.</p>
-      </div>
-      <ul class="bullets">
-        <li><b>Kragmaw the Warchief.</b> Strike the War Gong in the Fort's War Hall to fight him and his warband.</li>
-        <li><b>New boss gear.</b> Every new boss drops its own armor set, shield and weapon, with set perks like bombs, hexes, gores and crits.</li>
-        <li><b>New goblins.</b> Warband Raiders and Brutes, Kingdom Guards, Berserkers, Champions and Hex Shades.</li>
-        <li><b>Deepest Floor.</b> A Kingdom leaderboard in the Journal, plus badges for floors 10, 25, 50, 75 and 100.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="stratum world" id="world">
-  <div class="inner">
-    <div class="head">
-      <span class="label">The world</span>
-      <h2>Places worth the walk</h2>
-      <p>The zones are far apart on purpose. The deep ones open up as you finish their questlines.</p>
-    </div>
-    <div class="zones">
-      <article class="zone" style="--z: var(--r-uncommon)"><span class="unlock">Open from the start</span><h3>Town</h3><p>Whiskers' Wares, the Enchanter's Altar, Grimbold's Forge, the Hatchery, the Raid Gate and the Hall of Fame.</p></article>
-      <article class="zone" style="--z: var(--r-common)"><span class="unlock">Open from the start</span><h3>The Deep Mines</h3><p>The cave under town. Goblins and brutes guard the richer chambers.</p></article>
-      <article class="zone" style="--z: var(--r-celestial)"><span class="unlock">The Eclipse Prophecy</span><h3>Eclipse Shrine</h3><p>Three trials of the sun and moon, ending at Eclipsar, God of the Sun and Moon.</p></article>
-      <article class="zone" style="--z: var(--r-abyssal)"><span class="unlock">Whispers of the Void</span><h3>The Abyss</h3><p>A void-touched cave in the far north-east, home of Old Tobias's forge and Vor'Thalax, the Abyssal Heart.</p></article>
-      <article class="zone" style="--z: var(--ember)"><span class="unlock">Far south-west</span><h3>Goblin Fort</h3><p>A palisade full of goblins and archer towers. The War Hall holds the Warchief. The Kingdom Gate leads below.</p></article>
-      <article class="zone" style="--z: var(--r-rare)"><span class="unlock">The Skyward Path</span><h3>Skyreach</h3><p>Floating islands of sky pirates, storm brutes and sky ores, reached by Captain Gale's Sky Lift.</p></article>
-      <article class="zone" style="--z: var(--r-primordial)"><span class="unlock">The Brood Awakens</span><h3>The Broodhollow</h3><p>A giant anthill of ants and spiders, with Vesskar the Thousand-Leg in its heart.</p></article>
-      <article class="zone" style="--z: var(--r-ancient)"><span class="unlock">The Withering Root</span><h3>Rootdeep</h3><p>The roots of a dead world-tree, guarded by Gnarlroot, the Elder Root.</p></article>
-      <article class="zone" style="--z: var(--gold)"><span class="unlock">Beat the Warchief</span><h3>The Goblin Kingdom</h3><p>An endless floor-by-floor raid. How deep can you go?</p></article>
-    </div>
-  </div>
-</section>
-
-<section class="stratum ores" id="ores">
-  <div class="inner">
-    <div class="head">
-      <span class="label">Ore</span>
-      <h2>32 ores, from Stone to Elderbloom</h2>
-      <p>Everything you mine sells for gold, feeds your pets, or fortifies your gear at Grimbold's Forge, where better ore gives a bigger bonus.</p>
-    </div>
-    <div class="core-wrap">
-      <div class="core" id="core" aria-label="Ore sell values, drawn to scale"></div>
-      <div class="head">
-        <h3>Reading the core sample</h3>
-        <p class="note">Each bar is one ore's sell value per piece, all drawn on the same scale, coloured by rarity. Elderbloom, the deepest, sells for 3,400 gold. Stone sells for 1.</p>
-        <div class="legend" id="legend"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="stratum picks" id="pickaxes">
-  <div class="inner">
-    <div class="head">
-      <span class="label">Pickaxes</span>
-      <h2>Every pickaxe swings differently</h2>
-      <p>21 pickaxes, each with its own swing. The top ones change who you are: Dawn and Dusk give you wings and a halo, Voidbreaker rips open rifts, and Worldroot rides a pillar of roots.</p>
-    </div>
-    <div class="track-wrap"><div class="track" id="track"></div></div>
-    <p class="note">Scroll sideways for the full ladder. Prices are in gold at Whiskers' Wares or Old Tobias's forge.</p>
-  </div>
-</section>
-
-<section class="stratum bosses" id="bosses">
-  <div class="inner">
-    <div class="head">
-      <span class="label">Bosses</span>
-      <h2>Eighteen bosses, and they hit hard</h2>
-      <p>Raid bosses have phases, telegraphed attacks and summons. Most drop their own armor set, shield and weapon at 15%. Health scales up with your party.</p>
-    </div>
-    <div class="ladder" id="ladder"></div>
-    <div class="scale" aria-hidden="true"><span></span><div class="ticks"><span>0</span><span>50k</span><span>100k</span><span>150k</span><span>200k HP</span></div><span></span></div>
-  </div>
-</section>
-
-<section class="stratum extras" id="more">
-  <div class="inner">
-    <div class="two">
-      <div class="card">
-        <span class="label">Pets</span>
-        <h3>Hatch them small. Ride them grown.</h3>
-        <p class="note">Babies grow into adults you can ride, and flyers bank, climb and dive. Up to four pets can follow you into a fight.</p>
-        <div class="eggs">
-          <div class="egg"><div><b>Forest Egg</b><small>Wolf, Fox, Bunny, Bear, Owl</small></div><span class="num">750</span></div>
-          <div class="egg"><div><b>Royal Egg</b><small>Lion, Bear, Owl, Unicorn, Griffin</small></div><span class="num">6,000</span></div>
-          <div class="egg"><div><b>Mythic Egg</b><small>Unicorn, Griffin, Dragon</small></div><span class="num">30,000</span></div>
-          <div class="egg"><div><b>Void Egg</b><small>Void Squid, Abyssal Hydra, Void Amphiptere</small></div><span class="num">250,000</span></div>
-          <div class="egg"><div><b>Brood Egg</b><small>Warrior Ant, Widow Spider, Ant Queen</small></div><span class="num">500,000</span></div>
-        </div>
-        <div class="chips" id="petchips"></div>
-      </div>
-      <div class="card">
-        <span class="label">Keep growing</span>
-        <h3>Systems for the long haul</h3>
-        <div class="systems">
-          <div class="sys"><h3>Enchanting</h3><p>39 weapon and 31 pickaxe enchants, Common up to Mythic, at the Enchanter's Altar.</p></div>
-          <div class="sys"><h3>Fortifying</h3><p>Ten ore levels on every pickaxe, weapon, shield and armor piece at Grimbold's Forge.</p></div>
-          <div class="sys"><h3>Armor sets</h3><p>Mix helmets, chestplates and greaves. A full set gives bonus health and a perk.</p></div>
-          <div class="sys"><h3>Collection Book</h3><p>Fill in every ore, creature, piece of gear and pet for gold and permanent perks.</p></div>
-          <div class="sys"><h3>Badges & dailies</h3><p>72 badges, daily quests, login streaks, rebirths and global leaderboards.</p></div>
-          <div class="sys"><h3>Questlines</h3><p>Five storylines: Eclipse, Void, Sky, Brood and Root. Each one opens a new part of the world.</p></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <span class="label">Controls (PC)</span>
-      <div class="keys">
-        <div class="key"><kbd>Click</kbd><span>Mine and attack</span></div>
-        <div class="key"><kbd>1</kbd><kbd>2</kbd><span>Pickaxe / weapon</span></div>
-        <div class="key"><kbd>F</kbd><span>Block (parry if it's well timed)</span></div>
-        <div class="key"><kbd>Shift</kbd><span>Sprint</span></div>
-        <div class="key"><kbd>E</kbd><span>Talk, open, use</span></div>
-        <div class="key"><kbd>R</kbd><span>Ride your pet</span></div>
-        <div class="key"><kbd>B</kbd><span>Inventory</span></div>
-        <div class="key"><kbd>P</kbd><span>Pets</span></div>
-        <div class="key"><kbd>K</kbd><span>Collection Book</span></div>
-      </div>
-      <p class="note">Every action can be rebound in the Keys menu. Xbox controllers get a free-moving menu cursor, and phones get a touch-button ring.</p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="inner">
-    <span class="label">Treasure Below</span>
-    <p>Numbers on this page come from the game's own data as of the Goblin Kingdom update and may change with balance passes.</p>
-  </div>
-</footer>
-
+<script src="data.js"></script>
 <script>
-const RAR = { Common:"--r-common", Uncommon:"--r-uncommon", Rare:"--r-rare", Epic:"--r-epic", Legendary:"--r-legendary", Mythic:"--r-mythic", Divine:"--r-divine", Celestial:"--r-celestial", Abyssal:"--r-abyssal", Primordial:"--r-primordial", Ancient:"--r-ancient" };
-const c = r => `var(${RAR[r] || "--r-common"})`;
-const fmt = n => n.toLocaleString("en-US");
+const G = window.GAME;
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmt = n => (n == null || n === "" ? "–" : Number(n).toLocaleString("en-US"));
+const pct = (n, d = 0) => (n == null ? "–" : (n * 100).toFixed(d) + "%");
+const RVAR = { Common: "common", Uncommon: "uncommon", Rare: "rare", Epic: "epic", Legendary: "legendary", Mythic: "mythic", Divine: "divine", Celestial: "celestial", Abyssal: "abyssal", Primordial: "primordial", Ancient: "ancient", Exclusive: "exclusive", Bronze: "bronze", Silver: "silver", Gold: "gold" };
+const TIER_ORDER = ["Common", "Uncommon", "Rare", "Epic", "Legendary", "Mythic", "Divine", "Celestial", "Abyssal", "Primordial", "Ancient", "Exclusive"];
+const tierRank = t => { const i = TIER_ORDER.indexOf(t); return i < 0 ? 99 : i; };
+const col = t => `var(--r-${RVAR[t] || "common"})`;
+const chip = t => t ? `<span class="chip" style="--c:${col(t)}">${esc(t)}</span>` : "";
+const dot = t => `<span class="dot" style="--c:${col(t)}"></span>`;
+const slug = s => encodeURIComponent(s);
+const bossName = k => G.bosses.items[k]?.Name || k;
+const bossLink = k => `<a href="#boss/${slug(k)}">${esc(bossName(k))}</a>`;
+const monsterName = k => G.monsters[k]?.Name || k;
 
-// Ores in game order, each [name, rarity, sell value]
-const ORES = [["Stone","Common",1],["Coal","Common",2],["Copper","Common",3],["Iron","Uncommon",6],["Gold","Rare",12],["Crystal","Rare",25],["Amethyst","Epic",35],["Emerald","Epic",50],["Ruby","Epic",70],["Magma","Legendary",90],["Obsidian","Legendary",120],["Mythril","Mythic",160],["Skysilver","Epic",200],["Adamantite","Mythic",220],["Sunstone","Celestial",260],["Moonstone","Celestial",260],["Voidstone","Mythic",340],["Stormquartz","Legendary",360],["Silkstone","Mythic",380],["Starmetal","Celestial",480],["Sunpearl","Mythic",560],["Amber","Celestial",620],["Dragonheart","Abyssal",700],["Sapstone","Celestial",760],["Aetherium","Celestial",900],["Abyssium","Abyssal",1000],["Chitinite","Abyssal",1150],["Rootsilver","Abyssal",1350],["Venomite","Primordial",1600],["Heartwood","Primordial",2000],["Broodjewel","Primordial",2400],["Elderbloom","Ancient",3400]];
-const maxOre = 3400;
-document.getElementById("core").innerHTML = ORES.map(([n, r, v]) =>
-  `<div class="vein"><span class="name">${n}</span><span class="bar" style="--c:${c(r)};width:${Math.max(v / maxOre * 100, 0.6)}%" title="${r}"></span><span class="v">${fmt(v)}</span></div>`).join("");
-const used = [...new Set(ORES.map(o => o[1]))];
-document.getElementById("legend").innerHTML = used.map(r => `<span><i style="--c:${c(r)}"></i>${r}</span>`).join("");
+// Where an item comes from
+function source(it) {
+  if (it.Shop === "Boss" && it.Drop) return { text: "Drops from " + bossName(it.Drop), html: "Drops from " + bossLink(it.Drop), kind: "Boss drop" };
+  if (it.Quest) return { text: "Whiskers' Wares, after the Eclipse Prophecy", html: "Whiskers' Wares, after the <a href=\"#quests\">Eclipse Prophecy</a>", kind: "Quest" };
+  if (it.Shop === "Abyss") {
+    const gate = it.Root ? "the Withering Root" : it.Brood ? "the Brood Awakens" : "Whispers of the Void";
+    return { text: "Old Tobias's forge, after " + gate, html: `Old Tobias's forge, after <a href="#quests">${gate}</a>`, kind: "Tobias" };
+  }
+  return { text: "Whiskers' Wares", html: "Whiskers' Wares", kind: "Shop" };
+}
+function price(it) { return it.Shop === "Boss" ? "Drop only" : it.Price ? fmt(it.Price) : "Starter"; }
 
-// Pickaxes in shop order: [name, tier, price, form]
-const PICKS = [["Bronze Pickaxe","Common",0],["Silver Pickaxe","Common",60],["Gold Pickaxe","Uncommon",200],["Banana Pickaxe","Rare",400],["Emerald Pickaxe","Rare",750],["Ruby Pickaxe","Rare",1100],["Sapphire Pickaxe","Rare",1100],["Diamond Pickaxe","Epic",2500],["Crystal Pickaxe","Epic",4000],["Emerald Hammer","Epic",6500],["Ruby Hammer","Epic",8000],["Lightning Pickaxe","Legendary",15000],["Dawn Pickaxe","Divine",40000,"Wings, halo and a sun"],["Dusk Pickaxe","Divine",40000,"Wings and a flat moon"],["Eclipse Pickaxe","Celestial",100000],["Voidbreaker Pickaxe","Abyssal",300000,"Rift portals"],["Abyssal Pickaxe","Abyssal",900000,"A sky eye and tentacles"],["Swarmcaller Pickaxe","Primordial",2500000,"Rides an ant mound"],["Broodmother Pickaxe","Primordial",6000000,"Walks on spider legs"],["Thornreaver Pickaxe","Ancient",9000000,"Whips a thorn vine"],["Worldroot Pickaxe","Ancient",14000000,"Rides a pillar of roots"]];
-document.getElementById("track").innerHTML = PICKS.map(([n, t, p, form]) =>
-  `<div class="pick${form ? " star" : ""}" style="--c:${c(t)}"><span class="tier">${t}</span><span class="nm">${n.replace(" Pickaxe", "")}</span>${form ? `<span class="form">${form}</span>` : ""}<span class="price">${p ? fmt(p) : "Starter"}</span></div>`).join("");
-
-// Bosses: [group, name, title, hp, color]
-const BOSSES = [
-  ["Raid Gate", "Grukk the Goblin King", "Lord of the Deep Mines", 2000, "#78c850"],
-  ["Raid Gate", "The Stone Colossus", "Heart of the Mountain", 5000, "#6ec8ff"],
-  ["Raid Gate", "Ignaroth the Ember Dragon", "Terror of the Peaks", 10000, "#ff7828"],
-  ["Eclipse trials", "Solarius", "Trial of the Sun", 9000, "#ffc846"],
-  ["Eclipse trials", "Nocturne", "Trial of the Moon", 11000, "#aa78ff"],
-  ["Eclipse trials", "Eclipsar", "God of the Sun and Moon", 22000, "#ffaa3c"],
-  ["Goblin Fort", "Kragmaw the Warchief", "Blade of the Goblin Kingdom", 30000, "#e63c28"],
-  ["Elder Gate", "Hrimfang the Frost Wyrm", "Winter Without End", 40000, "#96dcff"],
-  ["Elder Gate", "Thalassor the Kraken", "Terror of the Drowned Deep", 45000, "#46c8be"],
-  ["Elder Gate", "Mordrath the Lich King", "Lord of the Restless Dead", 50000, "#78ff96"],
-  ["Elder Gate", "Volgarr the Storm Titan", "The Thunder That Walks", 60000, "#ffe15a"],
-  ["The Abyss", "Vor'Thalax", "The Abyssal Heart", 50000, "#3cf0e1"],
-  ["Broodhollow", "Vesskar the Thousand-Leg", "Wyrm of the Brood", 100000, "#aaff46"],
-  ["Rootdeep", "Gnarlroot, the Elder Root", "Heart of the World-Tree", 150000, "#ff823c"],
-  ["Goblin Kingdom", "Gorbag the Siegemaster", "Floor 10", 45000, "#ff9628"],
-  ["Goblin Kingdom", "Nyxa the Hexblade", "Floor 20", 70000, "#b46cff"],
-  ["Goblin Kingdom", "Grumhold the Iron Juggernaut", "Floor 30", 100000, "#ff7832"],
-  ["Goblin Kingdom", "Zogra the Beastmistress", "Floor 40", 140000, "#dc8c46"],
-  ["Goblin Kingdom", "Mogrul the Goblin Emperor", "Floor 50", 200000, "#ffd246"],
+// ---------------------------------------------------------------- routing
+const NAV = [
+  ["Start", [["home", "Home"], ["updates", "Updates"], ["zones", "World"], ["controls", "Controls"]]],
+  ["Mining", [["ores", "Ores"], ["pickaxes", "Pickaxes"]]],
+  ["Gear", [["weapons", "Weapons"], ["shields", "Shields"], ["armor", "Armor sets"], ["enchants", "Enchants"]]],
+  ["Fighting", [["bosses", "Bosses"], ["kingdom", "Goblin Kingdom"], ["monsters", "Monsters"]]],
+  ["Progress", [["pets", "Pets & eggs"], ["quests", "Questlines"], ["badges", "Badges"], ["systems", "Forge, bags & more"]]],
 ];
-const groups = [...new Set(BOSSES.map(b => b[0]))];
-const SCALE = 200000;
-document.getElementById("ladder").innerHTML = groups.map(g =>
-  `<div class="group"><span class="label">${g}</span>${BOSSES.filter(b => b[0] === g).map(([, n, t, hp, col]) =>
-    `<div class="rung"><span class="who">${n} <small>· ${t}</small></span><span class="track2"><span class="fill" style="--c:${col};width:${hp / SCALE * 100}%"></span></span><span class="hp">${fmt(hp)}</span></div>`).join("")}</div>`).join("");
+$("#tabs").innerHTML = NAV.map(([g, items]) => `<div class="group label">${g}</div>` + items.map(([id, name]) => `<a href="#${id}" data-r="${id}">${name}</a>`).join("")).join("");
 
-// Pets by rarity
-const PETS = [["Wolf","Common"],["Fox","Common"],["Bunny","Common"],["Bear","Rare"],["Lion","Rare"],["Owl","Rare"],["Unicorn","Epic"],["Griffin","Epic"],["Dragon","Legendary"],["Void Squid","Abyssal"],["Abyssal Hydra","Abyssal"],["Void Amphiptere","Abyssal"],["Warrior Ant","Primordial"],["Widow Spider","Primordial"],["Ant Queen","Primordial"]];
-document.getElementById("petchips").innerHTML = PETS.map(([n, r]) => `<span class="chip" style="--c:${c(r)}">${n}</span>`).join("");
+const PAGES = {};
+let current = null;
+// Open an item's panel without re-drawing the page (keeps the table's sort)
+function openItem(page, k) {
+  if (!OPENERS[page]) return;
+  history.replaceState(null, "", "#" + page + "/" + slug(k));
+  OPENERS[page](k);
+}
+function route() {
+  const h = decodeURIComponent(location.hash.slice(1) || "home");
+  const [page, ...rest] = h.split("/");
+  const arg = rest.join("/");
+  if (page === current && arg && OPENERS[page]) { OPENERS[page](arg); return; }
+  current = page;
+  const render = PAGES[page] || PAGES.home;
+  closeDrawer();
+  $("#main").innerHTML = `<div class="page">${render(arg)}</div><footer>All numbers come straight from the game's data as of the Goblin Kingdom update. Balance can change in future updates.</footer>`;
+  document.querySelectorAll("nav.tabs a").forEach(a => a.classList.toggle("on", a.dataset.r === (page === "boss" ? "bosses" : page)));
+  const on = document.querySelector("nav.tabs a.on");
+  if (on && window.innerWidth <= 860) on.scrollIntoView({ inline: "center", block: "nearest" });
+  wireTables();
+  if (arg && OPENERS[page]) OPENERS[page](arg);
+  if (!arg) window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", route);
+
+// ---------------------------------------------------------------- tables
+let TABLES = {};
+function table(id, cols, rows, opener) {
+  TABLES[id] = { cols, rows, opener, sort: null, dir: 1 };
+  return `<div class="tablewrap"><table id="${id}"><thead><tr>${cols.map((c, i) => `<th data-i="${i}" class="${c.num ? "num" : ""}">${c.label}<span class="arrow"></span></th>`).join("")}</tr></thead><tbody>${body(id)}</tbody></table></div>`;
+}
+function body(id) {
+  const t = TABLES[id];
+  let rows = t.rows.slice();
+  if (t.sort != null) {
+    const c = t.cols[t.sort];
+    const key = c.sort || (r => r[c.key]);
+    rows.sort((a, b) => { const x = key(a), y = key(b); return (x > y ? 1 : x < y ? -1 : 0) * t.dir; });
+  }
+  return rows.map(r => `<tr data-k="${esc(r._key)}">${t.cols.map(c => `<td class="${c.num ? "num" : ""}${c.wrap ? " wrap" : ""}">${c.html ? c.html(r) : esc(r[c.key] ?? "–")}</td>`).join("")}</tr>`).join("");
+}
+function wireTables() {
+  for (const id in TABLES) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    const t = TABLES[id];
+    el.querySelectorAll("th").forEach(th => th.onclick = () => {
+      const i = +th.dataset.i;
+      t.dir = t.sort === i ? -t.dir : (t.cols[i].num ? -1 : 1);
+      t.sort = i;
+      el.querySelector("tbody").innerHTML = body(id);
+      el.querySelectorAll("th").forEach(x => { x.classList.toggle("sorted", x === th); x.querySelector(".arrow").textContent = x === th ? (t.dir > 0 ? "▲" : "▼") : ""; });
+    });
+    el.querySelector("tbody").onclick = e => {
+      const tr = e.target.closest("tr");
+      if (tr && !e.target.closest("a") && t.opener) t.opener(tr.dataset.k);
+    };
+  }
+}
+
+// ---------------------------------------------------------------- drawer
+const OPENERS = {};
+function openDrawer(html) {
+  const d = $("#drawer");
+  d.innerHTML = `<button class="close" aria-label="Close" onclick="closeDrawer()">✕</button>` + html;
+  d.hidden = false;
+  d.scrollTop = 0;
+}
+function closeDrawer() { $("#drawer").hidden = true; }
+document.addEventListener("keydown", e => { if (e.key === "Escape") { closeDrawer(); $("#results").hidden = true; } });
+const kv = pairs => `<dl class="kv">${pairs.filter(p => p && p[1] != null && p[1] !== "").map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
+
+// ---------------------------------------------------------------- home
+PAGES.home = () => {
+  const up = G.updates[0];
+  const quick = [["pickaxes", "Pickaxes", G.pickaxes.order.length + " pickaxes"], ["enchants", "Enchants", (G.enchants.weaponOrder.length + G.enchants.pickaxeOrder.length) + " enchants"], ["bosses", "Bosses", G.bosses.order.length + " bosses"], ["ores", "Ores", G.ores.order.length + " ores"], ["weapons", "Weapons", G.weapons.order.length + " weapons"], ["pets", "Pets", G.pets.order.filter(p => !G.pets.items[p].Hidden).length + " pets"], ["armor", "Armor", G.armor.order.length + " sets"], ["badges", "Badges", G.badges.length + " badges"]];
+  return `
+  <section class="hero">
+    <span class="label">The official wiki</span>
+    <h1>Treasure Below</h1>
+    <p style="font-size:1.15rem">A medieval mining RPG on Roblox. Dig through the Deep Mines, forge legendary gear, tame pets that grow into dragons, and fight your way into the Goblin Kingdom.</p>
+    <div class="loop"><span>Mine</span><b>→</b><span>Sell</span><b>→</b><span>Upgrade</span><b>→</b><span>Fight</span><b>→</b><span>Go deeper</span></div>
+    <div class="stats">${quick.slice(0, 4).map(q => `<div><b>${q[2].split(" ")[0]}</b><span>${q[1]}</span></div>`).join("")}</div>
+  </section>
+  <div class="head"><span class="label">Browse</span><h2>Look something up</h2></div>
+  <div class="grid">${quick.map(([id, name, n]) => `<a class="card" href="#${id}"><h3>${name}</h3><p>${n}</p></a>`).join("")}</div>
+  <div class="head"><span class="label">Latest update · ${esc(up.Date)}</span><h2>${esc(up.Title)}</h2></div>
+  <div class="grid">${up.Items.map(i => `<div class="card"><h3>${esc(i.Icon)} ${esc(i.Title)}</h3><p>${esc(i.Text)}</p></div>`).join("")}</div>
+  <p><a href="#updates">All updates →</a></p>`;
+};
+
+PAGES.updates = () => `
+  <div class="head"><span class="label">Patch notes</span><h1>Updates</h1></div>
+  ${G.updates.map(u => `<section class="card" style="--c:${u.Color}"><div class="top-line"></div><span class="label">${esc(u.Date)}</span><h2>${esc(u.Title)}</h2>
+    <div class="grid">${u.Items.map(i => `<div><b>${esc(i.Icon)} ${esc(i.Title)}</b><p class="muted">${esc(i.Text)}</p></div>`).join("")}</div></section>`).join("")}`;
+
+// ---------------------------------------------------------------- world
+const ZCOL = { uncommon: "var(--r-uncommon)", common: "var(--r-common)", celestial: "var(--r-celestial)", abyssal: "var(--r-abyssal)", legendary: "var(--r-legendary)", rare: "var(--r-rare)", primordial: "var(--r-primordial)", ancient: "var(--r-ancient)", gold: "var(--gold)" };
+PAGES.zones = () => `
+  <div class="head"><span class="label">The world</span><h1>Zones</h1><p>The zones are far apart on purpose. The deep ones open as you finish their questlines.</p></div>
+  <div class="grid">${G.zones.map(z => `<article class="card" style="--c:${ZCOL[z.color]}"><div class="top-line"></div>
+    <span class="label" style="color:${ZCOL[z.color]}">${esc(z.unlock)}</span><h3>${esc(z.name)}</h3><p>${esc(z.text)}</p>
+    ${z.monsters ? `<div>${z.monsters.map(m => `<a class="tag" href="#monsters/${slug(m)}">${esc(monsterName(m))}</a>`).join("")}</div>` : ""}</article>`).join("")}</div>`;
+
+// ---------------------------------------------------------------- ores
+PAGES.ores = () => {
+  const rows = G.ores.order.map((k, i) => { const o = G.ores.items[k]; return { _key: k, i, name: k, display: o.Display, rarity: o.Rarity, value: o.Value, hp: o.Health, respawn: o.Respawn, drops: o.Drops, fort: G.fortify.oreBonus[k] }; });
+  return `<div class="head"><span class="label">Mining</span><h1>Ores</h1><p>Everything you mine sells for gold at Whiskers' Wares or Old Tobias's forge, feeds your pets, or fortifies your gear. Hardness is how much mining it takes to break the node. Click an ore for details.</p></div>
+  ${table("t-ores", [
+    { label: "Ore", html: r => `${dot(r.rarity)}<span class="name">${esc(r.name)}</span>`, sort: r => r.name },
+    { label: "Rarity", html: r => chip(r.rarity), sort: r => tierRank(r.rarity) },
+    { label: "Sell value", key: "value", num: 1, html: r => fmt(r.value) },
+    { label: "Hardness", key: "hp", num: 1, html: r => fmt(r.hp) },
+    { label: "Drops", num: 1, html: r => r.drops ? r.drops.join("–") : "–", sort: r => r.drops?.[1] },
+    { label: "Respawn", key: "respawn", num: 1, html: r => r.respawn + "s" },
+    { label: "Forge bonus / level", key: "fort", num: 1, html: r => "+" + r.fort + "%" },
+  ], rows, k => openItem("ores", k))}`;
+};
+OPENERS.ores = k => {
+  const o = G.ores.items[k]; if (!o) return;
+  const max = 3400;
+  openDrawer(`<div class="eyebrow">${chip(o.Rarity)}<span class="label">Ore</span></div><h2>${esc(k)}</h2>
+    <div class="bars"><div class="bar" style="--c:${o.Color}"><span>Sell value</span><span class="track"><i style="width:${o.Value / max * 100}%"></i></span><span class="mono">${fmt(o.Value)}</span></div></div>
+    ${kv([["Item name", esc(o.Display)], ["Sell value", fmt(o.Value) + " gold"], ["Hardness", fmt(o.Health)], ["Pieces per node", (o.Drops || []).join("–")], ["Respawns after", o.Respawn + " s"], ["Glows", o.Glow ? "Yes" : "No"], ["Forge bonus", "+" + G.fortify.oreBonus[k] + "% per fortify level"]])}`);
+};
+
+// ---------------------------------------------------------------- pickaxes
+const FORMS = { "Dawn Pickaxe": "Deity form: wings, a halo and a giant sun", "Dusk Pickaxe": "Deity form: wings and a flat moon", "Eclipse Pickaxe": "Eclipse aura", "Voidbreaker Pickaxe": "Rift style: portals and a front-flip plunge", "Abyssal Pickaxe": "Abyss style: a sky eye and tentacles", "Swarmcaller Pickaxe": "Rides an ant mound", "Broodmother Pickaxe": "Walks on spider legs", "Thornreaver Pickaxe": "Wrapped in briars, whips a thorn vine", "Worldroot Pickaxe": "Rides a pillar of roots, erupts giant roots" };
+PAGES.pickaxes = () => {
+  const rows = G.pickaxes.order.map((k, i) => { const p = G.pickaxes.items[k]; return { _key: k, i, name: k, tier: p.Tier, price: p.Price || 0, power: p.Power, yield: p.Yield || 1, splash: p.Splash || 0, src: source(p) }; });
+  return `<div class="head"><span class="label">Mining</span><h1>Pickaxes</h1><p>Power is how hard each swing hits. Yield is extra ore per break, and splash hits nearby nodes too. Every pickaxe has its own swing, and the top ones transform you.</p></div>
+  ${table("t-picks", [
+    { label: "Pickaxe", html: r => `${dot(r.tier)}<span class="name">${esc(r.name)}</span>`, sort: r => r.i },
+    { label: "Tier", html: r => chip(r.tier), sort: r => tierRank(r.tier) },
+    { label: "Price", num: 1, key: "price", html: r => r.price ? fmt(r.price) : "Starter" },
+    { label: "Power", num: 1, key: "power", html: r => fmt(r.power) },
+    { label: "Yield", num: 1, key: "yield", html: r => "×" + r.yield },
+    { label: "Splash", num: 1, key: "splash", html: r => r.splash ? r.splash + " studs" : "–" },
+    { label: "Where", html: r => esc(r.src.kind === "Shop" ? "Whiskers" : r.src.kind === "Tobias" ? "Old Tobias" : r.src.kind), sort: r => r.src.kind },
+  ], rows, k => openItem("pickaxes", k))}`;
+};
+OPENERS.pickaxes = k => {
+  const p = G.pickaxes.items[k]; if (!p) return;
+  openDrawer(`<div class="eyebrow">${chip(p.Tier)}<span class="label">Pickaxe</span></div><h2>${esc(k)}</h2>
+    ${FORMS[k] ? `<div class="desc" style="--c:${col(p.Tier)}">${esc(FORMS[k])}</div>` : ""}
+    ${kv([["Price", p.Price ? fmt(p.Price) + " gold" : "Starter pickaxe"], ["Power", fmt(p.Power)], ["Yield", "×" + (p.Yield || 1)], ["Splash", p.Splash ? p.Splash + " studs" : "None"], ["Where", source(p).html]])}
+    <p class="note">Pickaxes can also be enchanted at the Enchanter's Altar and fortified at Grimbold's Forge.</p>`);
+};
+
+// ---------------------------------------------------------------- weapons
+function effects(w) {
+  const e = [];
+  if (w.Ranged) e.push("Ranged");
+  if (w.Splash) e.push(`Splash ${w.Splash}`);
+  if (w.Arc) e.push(`Arc ${w.Arc}°`);
+  if (w.Pierce) e.push(`Pierces ${w.Pierce}`);
+  if (w.Explode) e.push(`Explodes ${w.Explode}`);
+  if (w.Stun) e.push(`Stun ${w.Stun}s`);
+  if (w.Pull) e.push("Pulls in");
+  if (w.Burn) e.push("Burns");
+  if (w.Venom) e.push("Venom");
+  if (w.Chill) e.push("Chills");
+  if (w.FinisherBurst) e.push("Finisher burst");
+  return e;
+}
+PAGES.weapons = () => {
+  const rows = G.weapons.order.map((k, i) => { const w = G.weapons.items[k]; return { _key: k, i, name: k, tier: w.Tier, dmg: w.Damage, range: w.Range, style: w.Style, fx: effects(w), price: w.Shop === "Boss" ? -1 : w.Price, src: source(w) }; });
+  return `<div class="head"><span class="label">Gear</span><h1>Weapons</h1><p>Damage is per hit. Weapons go in hotbar slot 2. Boss weapons can't be bought: each boss drops its own at a 15% chance per win.</p></div>
+  ${table("t-weapons", [
+    { label: "Weapon", html: r => `${dot(r.tier)}<span class="name">${esc(r.name)}</span>`, sort: r => r.i },
+    { label: "Tier", html: r => chip(r.tier), sort: r => tierRank(r.tier) },
+    { label: "Damage", num: 1, key: "dmg", html: r => fmt(r.dmg) },
+    { label: "Range", num: 1, key: "range" },
+    { label: "Attack", html: r => esc(G.styles[r.style] || r.style), sort: r => r.style },
+    { label: "Effects", html: r => r.fx.map(x => `<span class="tag">${x}</span>`).join("") || "–", sort: r => r.fx.length },
+    { label: "Price / source", num: 1, html: r => r.price < 0 ? `<span class="muted">Drop</span>` : fmt(r.price), sort: r => r.price },
+  ], rows, k => openItem("weapons", k))}`;
+};
+OPENERS.weapons = k => {
+  const w = G.weapons.items[k]; if (!w) return;
+  const dot2 = w.Venom ? `Poisons for ${pct(w.Venom.Share)} of the hit, ${w.Venom.Ticks} times` : w.Burn ? `Burns for ${pct(w.Burn.Share)} of the hit, ${w.Burn.Ticks} times` : null;
+  openDrawer(`<div class="eyebrow">${chip(w.Tier)}<span class="label">Weapon</span></div><h2>${esc(k)}</h2>
+    ${kv([["Damage", fmt(w.Damage) + " per hit"], ["Range", w.Range + " studs"], ["Attack", esc(G.styles[w.Style] || w.Style)], ["Splash", w.Splash && w.Splash + " studs"], ["Arc", w.Arc && w.Arc + "°"], ["Pierces", w.Pierce && w.Pierce + " enemies"], ["Explosion", w.Explode && w.Explode + " studs"], ["Stun", w.Stun && w.Stun + " s"], ["Pulls enemies in", w.Pull && "Yes"], ["Over time", dot2], ["Chill", w.Chill && w.Chill + " s"], ["Finisher", w.FinisherBurst && `Last combo hit bursts in ${w.FinisherBurst.Radius} studs and stuns`], ["Price", price(w)], ["Where", source(w).html]])}`);
+};
+
+// ---------------------------------------------------------------- shields
+PAGES.shields = () => {
+  const rows = G.shields.order.map((k, i) => { const s = G.shields.items[k]; return { _key: k, i, name: k, tier: s.Tier, block: s.Block, parry: s.Parry, speed: s.Speed, thorns: s.Thorns || 0, burst: s.ParryBurst ? s.ParryBurst.Damage : 0, all: s.AllAround, price: s.Shop === "Boss" ? -1 : s.Price, perk: s.Perk }; });
+  return `<div class="head"><span class="label">Gear</span><h1>Shields</h1><p>Hold block (F, or LT on a controller) to raise your shield. Block is how much of a frontal hit it stops. A hit that lands within the parry window is stopped completely and stuns the attacker. Speed is how fast you move while blocking.</p></div>
+  ${table("t-shields", [
+    { label: "Shield", html: r => `${dot(r.tier)}<span class="name">${esc(r.name)}</span>`, sort: r => r.i },
+    { label: "Tier", html: r => chip(r.tier), sort: r => tierRank(r.tier) },
+    { label: "Block", num: 1, key: "block", html: r => pct(r.block) },
+    { label: "Parry", num: 1, key: "parry", html: r => r.parry + "s" },
+    { label: "Speed", num: 1, key: "speed", html: r => pct(r.speed) },
+    { label: "Thorns", num: 1, key: "thorns", html: r => r.thorns ? pct(r.thorns) : "–" },
+    { label: "Parry burst", num: 1, key: "burst", html: r => r.burst ? fmt(r.burst) : "–" },
+    { label: "Price / source", num: 1, html: r => r.price < 0 ? `<span class="muted">Drop</span>` : fmt(r.price), sort: r => r.price },
+  ], rows, k => openItem("shields", k))}`;
+};
+OPENERS.shields = k => {
+  const s = G.shields.items[k]; if (!s) return;
+  openDrawer(`<div class="eyebrow">${chip(s.Tier)}<span class="label">Shield</span></div><h2>${esc(k)}</h2>
+    ${s.Perk ? `<div class="desc" style="--c:${col(s.Tier)}">${esc(s.Perk)}</div>` : ""}
+    ${kv([["Block", pct(s.Block) + (s.AllAround ? " from every side" : " from the front")], ["Parry window", s.Parry + " s"], ["Move speed blocking", pct(s.Speed)], ["Thorns", s.Thorns && pct(s.Thorns) + " of a blocked hit back"], ["Parry burst", s.ParryBurst && `${fmt(s.ParryBurst.Damage)} damage in ${s.ParryBurst.Radius} studs`], ["Parry freeze", s.ParryFreeze && s.ParryFreeze + " s"], ["Price", price(s)], ["Where", source(s).html]])}`);
+};
+
+// ---------------------------------------------------------------- armor
+PAGES.armor = () => {
+  const rows = G.armor.order.map((k, i) => { const s = G.armor.sets[k]; const P = s.Pieces; const def = P.Helmet.Defense + P.Chestplate.Defense + P.Greaves.Defense; const cost = P.Helmet.Price + P.Chestplate.Price + P.Greaves.Price; return { _key: k, i, name: s.Display, tier: s.Tier, def, bonus: s.Bonus, perk: s.Perk, cost: s.Shop === "Boss" ? -1 : cost, set: s }; });
+  return `<div class="head"><span class="label">Gear</span><h1>Armor sets</h1><p>Every set has a helmet, chestplate and greaves, bought and worn separately, so you can mix sets. Defense adds up across pieces. Wearing all three pieces of one set gives its bonus health and its perk.</p></div>
+  ${table("t-armor", [
+    { label: "Set", html: r => `${dot(r.tier)}<span class="name">${esc(r.name)}</span>`, sort: r => r.i },
+    { label: "Tier", html: r => chip(r.tier), sort: r => tierRank(r.tier) },
+    { label: "Full defense", num: 1, key: "def", html: r => pct(r.def) },
+    { label: "Set bonus", num: 1, key: "bonus", html: r => "+" + fmt(r.bonus) + " HP" },
+    { label: "Perk", wrap: 1, html: r => r.perk ? esc(r.perk) : "<span class=faint>–</span>", sort: r => r.perk || "" },
+    { label: "Full price", num: 1, html: r => r.cost < 0 ? `<span class="muted">Drop</span>` : fmt(r.cost), sort: r => r.cost },
+  ], rows, k => openItem("armor", k))}`;
+};
+OPENERS.armor = k => {
+  const s = G.armor.sets[k]; if (!s) return;
+  const it = { Shop: s.Shop, Drop: s.Drop, Quest: s.Quest, Brood: s.Brood, Root: s.Root };
+  openDrawer(`<div class="eyebrow">${chip(s.Tier)}<span class="label">Armor set</span></div><h2>${esc(s.Display)}</h2>
+    ${s.Perk ? `<div class="desc" style="--c:${col(s.Tier)}">Full set: ${esc(s.Perk)}</div>` : ""}
+    ${kv(["Helmet", "Chestplate", "Greaves"].map(slot => { const p = s.Pieces[slot]; return [slot, `${esc(p.Name)} <span class="muted">· ${pct(p.Defense)} defense${s.Shop === "Boss" ? "" : " · " + fmt(p.Price) + " gold"}</span>`]; }))}
+    ${kv([["Set bonus", "+" + fmt(s.Bonus) + " max health"], ["Where", source(it).html]])}`);
+};
+
+// ---------------------------------------------------------------- enchants
+let enchantKind = "Weapon", enchantTier = "All";
+PAGES.enchants = () => {
+  const E = G.enchants;
+  const order = enchantKind === "Weapon" ? E.weaponOrder : E.pickaxeOrder;
+  const pre = enchantKind === "Weapon" ? "W:" : "P:";
+  const rows = order.map((k, i) => ({ _key: k, i, name: k, tier: E.items[k].Rarity, chance: E.chances[pre + k] || 0, desc: E.items[k].Description })).filter(r => enchantTier === "All" || r.tier === enchantTier);
+  const cost = enchantKind === "Weapon" ? E.cost : E.pickaxeCost;
+  return `<div class="head"><span class="label">Gear</span><h1>Enchants</h1><p>Roll an enchant at the Enchanter's Altar in town. Each roll replaces the old enchant and costs <b>${fmt(cost.Gold)} gold + ${cost.OreAmount} ${esc(cost.Ore)}</b> for a ${enchantKind.toLowerCase()}. Chance is the odds of rolling that enchant on a normal roll. Focusing an enchant raises its odds.</p></div>
+  <div class="filters">
+    ${["Weapon", "Pickaxe"].map(k => `<button class="${enchantKind === k ? "on" : ""}" onclick="enchantKind='${k}';route()">${k} enchants (${(k === "Weapon" ? E.weaponOrder : E.pickaxeOrder).length})</button>`).join("")}
+    <span class="sep"></span>
+    ${["All", ...E.tiers].map(t => `<button class="${enchantTier === t ? "on" : ""}" onclick="enchantTier='${t}';route()">${t}</button>`).join("")}
+  </div>
+  ${table("t-ench", [
+    { label: "Enchant", html: r => `${dot(r.tier)}<span class="name">${esc(r.name)}</span>`, sort: r => r.i },
+    { label: "Rarity", html: r => chip(r.tier), sort: r => tierRank(r.tier) },
+    { label: "Chance", num: 1, key: "chance", html: r => (r.chance * 100).toFixed(r.chance < 0.01 ? 2 : 1) + "%" },
+    { label: "What it does", wrap: 1, key: "desc" },
+  ], rows, k => openItem("enchants", k))}`;
+};
+OPENERS.enchants = k => {
+  const e = G.enchants.items[k]; if (!e) return;
+  const kind = e.For === "Pickaxe" ? "Pickaxe" : "Weapon";
+  const ch = G.enchants.chances[(kind === "Weapon" ? "W:" : "P:") + k];
+  const skip = new Set(["Rarity", "Color", "Description", "Weight", "For"]);
+  const raw = Object.entries(e).filter(([a, v]) => !skip.has(a) && typeof v !== "object").map(([a, v]) => [a.replace(/([a-z])([A-Z])/g, "$1 $2"), esc(v)]);
+  openDrawer(`<div class="eyebrow">${chip(e.Rarity)}<span class="label">${kind} enchant</span></div><h2>${esc(k)}</h2>
+    <div class="desc" style="--c:${e.Color}">${esc(e.Description)}</div>
+    ${kv([["Rarity", esc(e.Rarity)], ["Roll chance", ch != null ? (ch * 100).toFixed(2) + "%" : "–"], ["Goes on", kind === "Weapon" ? "Weapons" : "Pickaxes"]])}
+    ${raw.length ? `<span class="label">Numbers</span>${kv(raw)}` : ""}`);
+};
+
+// ---------------------------------------------------------------- bosses
+PAGES.bosses = () => {
+  const max = 200000;
+  const byGroup = {};
+  for (const k of G.bosses.order) { const b = G.bosses.items[k]; (byGroup[b.Group] ||= []).push(k); }
+  return `<div class="head"><span class="label">Fighting</span><h1>Bosses</h1><p>Raid bosses have phases, telegraphed attacks and summons. Their health grows by ${pct(G.bosses.healthPerExtra)} for every extra player. Most drop their own armor set, shield and weapon (${pct(G.loot.chance)} per win). Click a boss for its fight guide.</p></div>
+  ${G.bosses.groupOrder.filter(g => byGroup[g]).map(g => `<section class="head"><h2>${g}</h2>
+    <div class="grid">${byGroup[g].map(k => { const b = G.bosses.items[k]; return `<a class="card" href="#boss/${slug(k)}" style="--c:${b.Color}"><div class="top-line"></div>
+      <span class="label">${esc(b.Title)}</span><h3>${esc(b.Name)}</h3>
+      <div class="hpbar" style="--c:${b.Color}"><span style="width:${Math.min(b.Health / max, 1) * 100}%"></span></div>
+      <p class="mono">${fmt(b.Health)} HP · ${fmt(b.Reward)} gold${b.Loot ? " · drops gear" : ""}</p></a>`; }).join("")}</div></section>`).join("")}`;
+};
+PAGES.boss = k => {
+  const b = G.bosses.items[k];
+  if (!b) return PAGES.bosses();
+  const L = b.Loot;
+  let loot = "";
+  if (L) {
+    const set = G.armor.sets[L.Set];
+    loot = `<section class="head"><h2>Drops</h2><p class="muted">${pct(G.loot.chance)} chance per win that one piece you don't own yet drops. The weapon is the rarest.</p>
+    <div class="grid">
+      <a class="card" href="#armor/${slug(L.Set)}" style="--c:${col(set.Tier)}"><div class="top-line"></div><span class="label">Armor set</span><h3>${esc(set.Display)}</h3><p>${["Helmet", "Chestplate", "Greaves"].map(s => esc(set.Pieces[s].Name)).join(", ")}</p>${set.Perk ? `<p>Full set: ${esc(set.Perk)}</p>` : ""}</a>
+      <a class="card" href="#shields/${slug(L.Gear)}" style="--c:${col(G.shields.items[L.Gear].Tier)}"><div class="top-line"></div><span class="label">Shield</span><h3>${esc(L.Gear)}</h3><p>${esc(G.shields.items[L.Gear].Perk || "")}</p></a>
+      <a class="card" href="#weapons/${slug(L.Weapon)}" style="--c:${col(G.weapons.items[L.Weapon].Tier)}"><div class="top-line"></div><span class="label">Weapon</span><h3>${esc(L.Weapon)}</h3><p>${fmt(G.weapons.items[L.Weapon].Damage)} damage · ${esc(G.styles[G.weapons.items[L.Weapon].Style] || "")}</p></a>
+    </div></section>`;
+  }
+  return `<p><a href="#bosses">← All bosses</a></p>
+  <div class="bosshead" style="--c:${b.Color}"><span class="label">${esc(b.Group)} · ${esc(b.Title)}</span><h1>${esc(b.Name)}</h1></div>
+  <div class="card">${kv([["Health", fmt(b.Health) + " (solo)"], ["Reward", fmt(b.Reward) + " gold"], ["Difficulty", esc(b.Difficulty)], ["Arena", esc(b.Arena)], ["Where", esc(b.Where)], ["Recommended", esc(b.Recommended)], ["Unlocked by", b.Quest ? "<a href=\"#quests\">The Eclipse Prophecy</a>" : b.Group === "Goblin Kingdom" ? "<a href=\"#kingdom\">Reaching its floor</a>" : null]])}</div>
+  ${b.Notes.length ? `<section class="head"><h2>The fight</h2><ul class="phases">${b.Notes.map(n => `<li>${esc(n)}</li>`).join("")}</ul></section>` : ""}
+  ${loot}`;
+};
+
+// ---------------------------------------------------------------- kingdom
+PAGES.kingdom = () => {
+  const hp = f => (1 + 0.07 * (Math.min(f, 50) - 1)) * Math.pow(1.05, Math.max(f - 50, 0));
+  const dmg = f => (1 + 0.035 * (Math.min(f, 50) - 1)) * Math.pow(1.03, Math.max(f - 50, 0));
+  const floors = [1, 10, 20, 30, 40, 50, 60, 75, 100].map(f => ({ _key: f, f, hp: hp(f), dmg: dmg(f), gold: 1500 + 500 * f }));
+  return `<div class="head"><span class="label">Fighting</span><h1>The Goblin Kingdom</h1><p>An endless raid beneath the Goblin Fort. Beat <a href="#boss/Warchief">Kragmaw the Warchief</a> once to open the Kingdom Gate, just inside the Fort's north wall.</p></div>
+  <div class="grid">
+    <div class="card"><h3>How a run works</h3><p>One run per server. The first player in starts an ${G.kingdom.countdown}-second countdown, and anyone who has opened the gate can join while it's going. <b>Every run starts on floor 1.</b> Dying or leaving through the exit ends your run.</p></div>
+    <div class="card"><h3>Floors</h3><p>Each floor is a wave of Kingdom goblins coming through the four gates. Clear it for gold (${G.kingdom.floorGold}). Everyone still standing heals ${pct(G.kingdom.heal)}, and after a ${G.kingdom.break}-second break the next floor starts.</p></div>
+    <div class="card"><h3>Endless</h3><p>Every 10th floor is a boss. Past floor 50 the bosses come back with ×1.8 health and ×1.3 damage each lap, and pay 50% more. Your deepest floor is saved and ranked on the Kingdom leaderboard.</p></div>
+  </div>
+  <section class="head"><h2>Boss floors</h2><div class="grid">${G.kingdom.bossFloors.map(({ floor, key }) => { const b = G.bosses.items[key]; return `<a class="card" href="#boss/${slug(key)}" style="--c:${b.Color}"><div class="top-line"></div><span class="label">Floor ${floor}</span><h3>${esc(b.Name)}</h3><p>${esc(b.Title)} · ${fmt(b.Health)} HP</p></a>`; }).join("")}</div></section>
+  <section class="head"><h2>How hard it gets</h2><p class="muted">Monster health and damage compared with floor 1, and the gold for clearing each floor.</p>
+  ${table("t-floors", [
+    { label: "Floor", num: 1, key: "f" },
+    { label: "Monster health", num: 1, key: "hp", html: r => "×" + r.hp.toFixed(2) },
+    { label: "Monster damage", num: 1, key: "dmg", html: r => "×" + r.dmg.toFixed(2) },
+    { label: "Floor gold", num: 1, key: "gold", html: r => fmt(r.gold) },
+  ], floors, null)}</section>
+  <section class="head"><h2>Monsters by depth</h2><p class="muted">Floors 1–9: Kingdom Guards and Warband Raiders. From 11: Berserkers and Warband Brutes join. From 31: Kingdom Champions.</p></section>
+  <section class="head"><h2>Floor badges</h2><p class="muted">Into the Kingdom (10), Deep Delver (25), Throne Room (50), Beyond the Throne (75), Endless (100). See <a href="#badges">Badges</a>.</p></section>`;
+};
+
+// ---------------------------------------------------------------- monsters
+PAGES.monsters = () => {
+  const rows = Object.entries(G.monsters).map(([k, m]) => ({ _key: k, name: m.Name, hp: m.Health, dmg: m.Damage, speed: m.Speed, coins: m.Coins, where: m.Where || "", elite: m.Elite || m.Helmet }));
+  rows.sort((a, b) => a.hp - b.hp);
+  return `<div class="head"><span class="label">Fighting</span><h1>Monsters</h1><p>Base stats. In the Goblin Kingdom, monsters get tougher every floor.</p></div>
+  ${table("t-mon", [
+    { label: "Monster", html: r => `<span class="name">${esc(r.name)}</span>`, sort: r => r.name },
+    { label: "Health", num: 1, key: "hp", html: r => fmt(r.hp) },
+    { label: "Damage", num: 1, key: "dmg", html: r => fmt(r.dmg) },
+    { label: "Speed", num: 1, key: "speed" },
+    { label: "Coins", num: 1, html: r => r.coins ? r.coins.join("–") : "–", sort: r => r.coins?.[1] },
+    { label: "Where", wrap: 1, key: "where" },
+  ], rows, k => openItem("monsters", k))}`;
+};
+OPENERS.monsters = k => {
+  const m = G.monsters[k]; if (!m) return;
+  openDrawer(`<span class="label">Monster</span><h2>${esc(m.Name)}</h2>
+    ${kv([["Health", fmt(m.Health)], ["Damage", fmt(m.Damage)], ["Speed", m.Speed], ["Attack every", m.AttackCooldown + " s"], ["Reach", m.AttackRange + " studs"], ["Shoots from", m.Range && m.Range + " studs"], ["Spits", m.Spit && `from ${m.Spit.Range} studs, slows you`], ["Coins dropped", m.Coins && m.Coins.join("–")], ["Where", esc(m.Where)], ["Elite", m.Elite ? "Yes (counts double for pet growth)" : null]])}`);
+};
+
+// ---------------------------------------------------------------- pets
+PAGES.pets = () => {
+  const P = G.pets;
+  const rows = P.order.filter(k => !P.items[k].Hidden).map((k, i) => { const p = P.items[k]; const a = P.attacks[k] || {}; return { _key: k, i, name: k, tier: p.Rarity, speed: p.Speed, fly: p.FlySpeed || (p.Flyer ? p.Speed : 0), atk: a.Name, dmg: a.Damage, cd: a.Cooldown }; });
+  return `<div class="head"><span class="label">Progress</span><h1>Pets & eggs</h1><p>Hatch eggs at the Hatchery (the Void and Brood eggs have their own spots). Pets grow from Baby (0) to Young (${fmt(P.stageGrowth.Young)} growth) to Adult (${fmt(P.stageGrowth.Adult)}) as you mine, fight and feed them. Adults can be ridden, and flyers can take off. You can have up to ${P.maxSlots} pets out at once.</p></div>
+  <section class="head"><h2>Eggs</h2><div class="grid">${P.eggOrder.map(e => { const egg = P.eggs[e]; const odds = P.eggChances[e] || []; return `<div class="card" style="--c:${egg.Spots || "var(--gold)"}"><div class="top-line"></div><span class="label">${fmt(egg.Price)} gold${egg.Where ? " · " + esc(egg.Where) : ""}</span><h3>${esc(e)}</h3>
+    <div class="bars">${odds.map(o => `<div class="bar" style="--c:${col(P.items[o.Species]?.Rarity)}"><a href="#pets/${slug(o.Species)}">${esc(o.Species)}</a><span class="track"><i style="width:${o.Percent}%"></i></span><span class="mono">${(+o.Percent).toFixed(0)}%</span></div>`).join("")}</div></div>`; }).join("")}</div></section>
+  <section class="head"><h2>All pets</h2>
+  ${table("t-pets", [
+    { label: "Pet", html: r => `${dot(r.tier)}<span class="name">${esc(r.name)}</span>`, sort: r => r.i },
+    { label: "Rarity", html: r => chip(r.tier), sort: r => tierRank(r.tier) },
+    { label: "Ride speed", num: 1, key: "speed" },
+    { label: "Fly speed", num: 1, key: "fly", html: r => r.fly || "–" },
+    { label: "Attack", key: "atk" },
+    { label: "Damage", num: 1, key: "dmg" },
+    { label: "Every", num: 1, key: "cd", html: r => r.cd ? r.cd + "s" : "–" },
+  ], rows, k => openItem("pets", k))}</section>
+  <section class="head"><h2>Pet slots</h2><p class="muted">Start with 1. Buy more at the Hatchery: ${Object.entries(P.slotPrices).sort((a, b) => a[0] - b[0]).map(([n, p]) => `slot ${n} for ${fmt(p)} gold`).join(", ")}.</p></section>`;
+};
+OPENERS.pets = k => {
+  const p = G.pets.items[k]; if (!p) return;
+  const a = G.pets.attacks[k] || {};
+  const eggs = G.pets.eggOrder.filter(e => (G.pets.eggChances[e] || []).some(o => o.Species === k)).map(e => { const o = G.pets.eggChances[e].find(o => o.Species === k); return `${esc(e)} (${(+o.Percent).toFixed(0)}%)`; });
+  openDrawer(`<div class="eyebrow">${chip(p.Rarity)}<span class="label">Pet</span></div><h2>${esc(k)}</h2>
+    ${p.Blurb ? `<div class="desc" style="--c:${col(p.Rarity)}">${esc(p.Blurb)}</div>` : ""}
+    ${kv([["Ride speed", p.Speed], ["Flies", p.Flyer ? "Yes" + (p.FlySpeed ? `, at ${p.FlySpeed}` : "") : "No"], ["Attack", a.Name && `${esc(a.Name)}: ${a.Damage} damage every ${a.Cooldown} s, reach ${a.Range}`], ["Hatches from", eggs.join(", ") || "Not from an egg"]])}`);
+};
+
+// ---------------------------------------------------------------- quests
+const QORDER = [["QuestData", "Opens the Eclipse gear and pickaxe"], ["VoidQuestData", "Opens The Abyss and Old Tobias's forge"], ["SkyQuestData", "Opens Skyreach and the Sky Lift"], ["BroodQuestData", "Opens the Broodhollow and Brood gear"], ["RootQuestData", "Opens Rootdeep and its gear"]];
+PAGES.quests = () => `<div class="head"><span class="label">Progress</span><h1>Questlines</h1><p>Five storylines. Each opens a new part of the world. Tribute steps take ore from your bag.</p></div>
+  ${QORDER.map(([id, opens]) => { const q = G.quests[id]; return `<section class="card"><span class="label">${esc(q.giver || "")} · ${opens}</span><h2>${esc(q.name)}</h2><blockquote>${esc(q.intro)}</blockquote>
+    <ol class="steps">${q.steps.map(s => `<li><div><b>${esc(s.Title)}</b> <span class="muted">· ${esc(s.Goal)}${s.Count && !/\d/.test(s.Goal) ? " (" + s.Count + ")" : ""}</span><div class="lore">${esc(s.Lore)}</div></div></li>`).join("")}</ol>
+    <p class="muted"><b>When you finish:</b> ${esc(q.finished)}</p></section>`; }).join("")}`;
+
+// ---------------------------------------------------------------- badges
+let badgeTier = "All";
+PAGES.badges = () => {
+  const rows = G.badges.filter(b => badgeTier === "All" || b.Tier === badgeTier).map(b => ({ _key: b.Id, o: b.Order, icon: b.Icon, name: b.Name, desc: b.Desc, tier: b.Tier, reward: b.Reward || 0 }));
+  const total = G.badges.reduce((s, b) => s + (b.Reward || 0), 0);
+  return `<div class="head"><span class="label">Progress</span><h1>Badges</h1><p>${G.badges.length} badges in the Journal, worth ${fmt(total)} gold altogether. Past progress counts: boss and ore badges are also awarded from your Collection Book.</p></div>
+  <div class="filters">${["All", "Bronze", "Silver", "Gold", "Mythic"].map(t => `<button class="${badgeTier === t ? "on" : ""}" onclick="badgeTier='${t}';route()">${t}</button>`).join("")}</div>
+  ${table("t-badges", [
+    { label: "", html: r => esc(r.icon), sort: r => r.o },
+    { label: "Badge", html: r => `<span class="name">${esc(r.name)}</span>`, sort: r => r.name },
+    { label: "How to get it", wrap: 1, key: "desc" },
+    { label: "Tier", html: r => `<span class="chip" style="--c:var(--t-${r.tier.toLowerCase()})">${r.tier}</span>`, sort: r => ["Bronze", "Silver", "Gold", "Mythic"].indexOf(r.tier) },
+    { label: "Reward", num: 1, key: "reward", html: r => r.reward ? fmt(r.reward) : "–" },
+  ], rows, null)}`;
+};
+
+// ---------------------------------------------------------------- systems
+PAGES.systems = () => {
+  const F = G.fortify;
+  const fortRows = F.cost.map((c, i) => ({ _key: i + 1, lvl: i + 1, ore: c.Ore, gold: c.Gold }));
+  const bagRows = G.bag.map((b, i) => ({ _key: b.Name, i, name: b.Name, cap: b.Capacity, cost: b.Cost, ore: b.Ore ? `${b.Ore[1]} ${b.Ore[0]}` : "", blurb: b.Blurb }));
+  const rebRows = G.rebirth.costs.map((c, i) => ({ _key: i + 1, n: i + 1, cost: c, sell: 1 + G.rebirth.sellBonus * (i + 1), power: 1 + G.rebirth.powerBonus * (i + 1) }));
+  return `<div class="head"><span class="label">Progress</span><h1>Forge, bags & more</h1></div>
+  <section class="head"><h2>Grimbold's Forge</h2><p class="muted">Every pickaxe, weapon, shield and armor piece has ${F.maxLevel} fortify levels, each set with one ore. Better ore gives a bigger bonus (see the forge column on <a href="#ores">Ores</a>, from +1% for Stone to +6.3% for Elderbloom). Once all ${F.maxLevel} are set, you can reforge the weakest level with a better ore. Fortify levels survive a rebirth.</p>
+  ${table("t-fort", [{ label: "Level", num: 1, key: "lvl" }, { label: "Ore needed", num: 1, key: "ore" }, { label: "Gold", num: 1, key: "gold", html: r => fmt(r.gold) }], fortRows, null)}</section>
+  <section class="head"><h2>Bags (Pip's Packs)</h2><p class="muted">How much ore you can carry before you have to sell.</p>
+  ${table("t-bag", [{ label: "Bag", html: r => `<span class="name">${esc(r.name)}</span>`, sort: r => r.i }, { label: "Holds", num: 1, key: "cap", html: r => fmt(r.cap) }, { label: "Price", num: 1, key: "cost", html: r => r.cost ? fmt(r.cost) : "Starter" }, { label: "Also needs", key: "ore" }, { label: "", wrap: 1, key: "blurb" }], bagRows, null)}</section>
+  <section class="head"><h2>Rebirth</h2><p class="muted">Start over with your gold and gear reset (your stats, pets, badges and fortifies stay) for a permanent boost: +${pct(G.rebirth.sellBonus)} sell price and +${pct(G.rebirth.powerBonus)} mining power per rebirth.</p>
+  ${table("t-reb", [{ label: "Rebirth", num: 1, key: "n" }, { label: "Cost", num: 1, key: "cost", html: r => fmt(r.cost) }, { label: "Sell price", num: 1, key: "sell", html: r => "×" + r.sell.toFixed(2) }, { label: "Mining power", num: 1, key: "power", html: r => "×" + r.power.toFixed(2) }], rebRows, null)}</section>
+  <section class="head"><h2>Collection Book</h2><p class="muted">Press K to open it. Every new ore, creature, piece of gear and pet you find is recorded. Each page pays gold at 25%, 50%, 75% and 100% (${G.collection.milestones.map(m => fmt(m.Gold)).join(" / ")}) and a permanent perk when finished.</p>
+  <div class="grid">${G.collection.pages.map(p => `<div class="card"><span class="label">${p.count} entries</span><h3>${esc(p.title)}</h3><p><b>${esc(p.perk.Name)}:</b> ${esc(p.perk.Text)}</p></div>`).join("")}</div></section>
+  <section class="head"><h2>Daily quests & login streak</h2><p class="muted">Three new quests every day, one from each tier, plus a login reward that grows with your streak. Rewards scale up with your rebirths.</p>
+  <div class="grid">${G.daily.tiers.map(t => `<div class="card" style="--c:${t.Color}"><div class="top-line"></div><h3>${esc(t.Name)}</h3><p>${fmt(t.Reward)} gold</p></div>`).join("")}</div></section>`;
+};
+
+// ---------------------------------------------------------------- controls
+PAGES.controls = () => `<div class="head"><span class="label">Start</span><h1>Controls</h1><p>Every action can be rebound in the Keys menu. Controllers get a free-moving menu cursor, and phones get a ring of touch buttons.</p></div>
+  <div class="card">${kv([["<kbd>Click</kbd>", "Mine and attack"], ["<kbd>1</kbd> <kbd>2</kbd>", "Pickaxe / weapon"], ["<kbd>F</kbd>", "Block. Raise it just before a hit lands to parry"], ["<kbd>Shift</kbd>", "Sprint (uses stamina)"], ["<kbd>E</kbd>", "Talk, open, use"], ["<kbd>R</kbd>", "Ride your pet (grown pets only)"], ["<kbd>Space</kbd>", "Jump. While riding a flyer: take off and climb"], ["<kbd>Ctrl</kbd> / <kbd>Q</kbd>", "Dive while flying"], ["<kbd>B</kbd>", "Inventory"], ["<kbd>P</kbd>", "Pets"], ["<kbd>K</kbd>", "Collection Book"]])}</div>
+  <div class="card"><h3>Xbox</h3><p>Hold LT to block, Y to ride, and click L3 while moving to sprint. Menus use a free-moving cursor.</p></div>`;
+
+// ---------------------------------------------------------------- search
+const INDEX = [];
+const add = (name, kind, href, extra = "") => INDEX.push({ name, kind, href, hay: (name + " " + extra).toLowerCase() });
+G.pickaxes.order.forEach(k => add(k, "Pickaxe", "#pickaxes/" + slug(k)));
+G.ores.order.forEach(k => add(k, "Ore", "#ores/" + slug(k), G.ores.items[k].Display));
+G.weapons.order.forEach(k => add(k, "Weapon", "#weapons/" + slug(k)));
+G.shields.order.forEach(k => add(k, "Shield", "#shields/" + slug(k)));
+G.armor.order.forEach(k => { const s = G.armor.sets[k]; add(s.Display, "Armor set", "#armor/" + slug(k)); ["Helmet", "Chestplate", "Greaves"].forEach(p => add(s.Pieces[p].Name, "Armor", "#armor/" + slug(k))); });
+G.enchants.weaponOrder.forEach(k => add(k, "Weapon enchant", "#enchants/" + slug(k), G.enchants.items[k].Description));
+G.enchants.pickaxeOrder.forEach(k => add(k, "Pickaxe enchant", "#enchants/" + slug(k), G.enchants.items[k].Description));
+G.bosses.order.forEach(k => add(G.bosses.items[k].Name, "Boss", "#boss/" + slug(k), G.bosses.items[k].Title));
+Object.entries(G.monsters).forEach(([k, m]) => add(m.Name, "Monster", "#monsters/" + slug(k)));
+G.pets.order.filter(k => !G.pets.items[k].Hidden).forEach(k => add(k, "Pet", "#pets/" + slug(k)));
+G.pets.eggOrder.forEach(k => add(k, "Egg", "#pets"));
+Object.values(G.quests).forEach(q => add(q.name, "Questline", "#quests", q.giver));
+G.badges.forEach(b => add(b.Name, "Badge", "#badges", b.Desc));
+G.zones.forEach(z => add(z.name, "Zone", "#zones"));
+
+const q = $("#q"), res = $("#results");
+let hits = [], sel = 0;
+function showResults() {
+  const s = q.value.trim().toLowerCase();
+  if (!s) { res.hidden = true; return; }
+  hits = INDEX.filter(e => e.hay.includes(s)).sort((a, b) => (b.name.toLowerCase().startsWith(s)) - (a.name.toLowerCase().startsWith(s))).slice(0, 14);
+  sel = 0;
+  res.innerHTML = hits.length ? hits.map((h, i) => `<a href="${h.href}" class="${i === sel ? "on" : ""}"><span>${esc(h.name)}</span><span>${h.kind}</span></a>`).join("") : `<a><span class="muted">Nothing found for "${esc(q.value)}"</span><span></span></a>`;
+  res.hidden = false;
+}
+q.addEventListener("input", showResults);
+q.addEventListener("keydown", e => {
+  if (res.hidden || !hits.length) return;
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); sel = (sel + (e.key === "ArrowDown" ? 1 : -1) + hits.length) % hits.length; res.querySelectorAll("a").forEach((a, i) => a.classList.toggle("on", i === sel)); }
+  if (e.key === "Enter") { location.hash = hits[sel].href; res.hidden = true; q.blur(); }
+});
+res.addEventListener("click", e => { if (e.target.closest("a")) { res.hidden = true; q.value = ""; } });
+document.addEventListener("click", e => { if (!e.target.closest(".search")) res.hidden = true; });
+
+route();
 </script>
 </body>
 </html>
