@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Treasure Below: a medieval mining RPG on Roblox. Mine, forge legendary gear, tame pets and fight into the endless Goblin Kingdom.">
+<meta property="og:title" content="Treasure Below">
+<meta property="og:description" content="A medieval mining RPG on Roblox. Now with the endless Goblin Kingdom.">
+<title>Treasure Below</title>
+<link rel="icon" href="icon.png">
+<meta property="og:image" content="thumbnail.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one long dig. Each section is a soil stratum, a little darker and deeper than the
+   last, with a "core sample" rail down the left edge on wide screens. */
+:root {
+  color-scheme: dark;
+  --soil-1: #3a2e25;
+  --soil-2: #2c241e;
+  --soil-3: #221c18;
+  --soil-4: #191513;
+  --soil-5: #12100f;
+  --bedrock: #0c0b0b;
+  --parchment: #efe2c4;
+  --muted: #b3a283;
+  --faint: #7d6f5a;
+  --gold: #e8b84a;
+  --ember: #ff6a2b;
+  --jade: #6ee07a;
+  --line: rgba(239, 226, 196, 0.14);
+  --panel: rgba(239, 226, 196, 0.05);
+
+  --r-common: #a9a59c; --r-uncommon: #7fcf6a; --r-rare: #5aa8f0; --r-epic: #b46cff;
+  --r-legendary: #ffa53a; --r-mythic: #ff5c7a; --r-divine: #fff1a8; --r-celestial: #ffd56a;
+  --r-abyssal: #3ce8d6; --r-primordial: #aaff46; --r-ancient: #ffcb3c;
+
+  --display: "IM Fell English SC", "Iowan Old Style", Georgia, serif;
+  --body: "Alegreya Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--bedrock); color: var(--parchment); font-family: var(--body); font-size: 17px; line-height: 1.55; }
+a { color: var(--gold); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.05; letter-spacing: 0.01em; }
+h3 { font-size: 1.35rem; line-height: 1.15; }
+p { margin: 0; max-width: 65ch; }
+.label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* strata */
+.stratum { position: relative; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: clamp(56px, 9vw, 96px); }
+.stratum::before { /* the ragged seam between layers */
+  content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 14px;
+  background: linear-gradient(135deg, var(--seam) 25%, transparent 25%) 0 0 / 22px 14px,
+              linear-gradient(225deg, var(--seam) 25%, transparent 25%) 0 0 / 22px 14px;
+}
+.inner { max-width: 1080px; margin: 0 auto; display: grid; gap: 28px; }
+.head { display: grid; gap: 10px; }
+.head p { color: var(--muted); }
+
+/* hero */
+.hero { --seam: transparent; background:
+  radial-gradient(120% 70% at 50% -10%, #5b7a46 0%, #3f5532 30%, transparent 60%),
+  linear-gradient(#4a3a2c, var(--soil-1)); padding-block: clamp(64px, 11vw, 120px) clamp(48px, 8vw, 80px); }
+.hero .inner { gap: 22px; }
+.grass { position: absolute; left: 0; right: 0; top: 0; height: 10px; background: repeating-linear-gradient(90deg, #6a9a4a 0 18px, #5b8a3e 18px 30px, #7aab55 30px 40px); }
+.hero h1 { font-size: clamp(3.2rem, 11vw, 7.5rem); line-height: 0.9; color: var(--gold); text-shadow: 0 3px 0 #6b4a16, 0 10px 30px rgba(0,0,0,.45); }
+.hero .tag { font-size: clamp(1.15rem, 2.6vw, 1.5rem); max-width: 40ch; }
+.loop { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: var(--mono); font-size: 0.9rem; }
+.loop span.step { background: rgba(0,0,0,.28); border: 1px solid var(--line); padding: 6px 12px; border-radius: 3px; }
+.loop span.arrow { color: var(--gold); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: #2a1d07; font-weight: 700; text-decoration: none; padding: 13px 22px; border-radius: 4px; box-shadow: 0 4px 0 #8a6215; transition: transform .12s, box-shadow .12s; }
+.btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 #8a6215; }
+.btn.ghost { background: transparent; color: var(--parchment); box-shadow: none; border: 1px solid var(--line); }
+.platforms { color: var(--muted); font-size: 0.95rem; }
+
+/* new update banner */
+.news { --seam: var(--soil-1); background: var(--soil-2); }
+.update { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.update .crown { border: 1px solid rgba(232,184,74,.35); background: linear-gradient(160deg, rgba(232,184,74,.12), transparent 60%); padding: 24px; border-radius: 6px; display: grid; gap: 14px; }
+.floors { display: grid; gap: 6px; }
+.floor { display: grid; grid-template-columns: 4.2rem minmax(0,1fr); gap: 12px; align-items: baseline; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.floor:last-child { border-bottom: 0; }
+.floor .n { font-family: var(--mono); color: var(--gold); font-size: 0.85rem; }
+.floor b { font-weight: 700; }
+.floor small { color: var(--muted); display: block; font-size: 0.92rem; }
+.bullets { display: grid; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.bullets li { padding-left: 18px; position: relative; }
+.bullets li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); }
+
+/* world */
+.world { --seam: var(--soil-2); background: var(--soil-3); }
+.zones { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.zone { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 18px 18px 16px; display: grid; gap: 8px; align-content: start; border-top: 3px solid var(--z); }
+.zone .unlock { font-family: var(--mono); font-size: 0.78rem; color: var(--z); }
+.zone p { color: var(--muted); font-size: 0.97rem; }
+
+/* ores */
+.ores { --seam: var(--soil-3); background: var(--soil-4); }
+.core-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.core { display: grid; gap: 3px; }
+.vein { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) 4.2rem; gap: 10px; align-items: center; font-size: 0.92rem; }
+.vein .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vein .bar { height: 14px; border-radius: 2px; background: var(--c); box-shadow: inset 0 -3px 0 rgba(0,0,0,.25); }
+.vein .v { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.82rem; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; background: var(--c); margin-right: 6px; transform: rotate(45deg); }
+.note { color: var(--faint); font-size: 0.85rem; }
+
+/* pickaxes */
+.picks { --seam: var(--soil-4); background: var(--soil-5); }
+.track-wrap { overflow-x: auto; padding-bottom: 8px; scrollbar-color: var(--faint) transparent; }
+.track { display: grid; grid-auto-flow: column; grid-auto-columns: 168px; gap: 10px; }
+.pick { background: var(--panel); border: 1px solid var(--line); border-radius: 5px; padding: 14px; display: grid; gap: 6px; align-content: start; border-bottom: 3px solid var(--c); min-height: 132px; }
+.pick .tier { font-family: var(--mono); font-size: 0.72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--c); }
+.pick .nm { font-weight: 700; line-height: 1.2; }
+.pick .price { font-family: var(--mono); font-size: 0.85rem; color: var(--gold); margin-top: auto; }
+.pick.star { background: linear-gradient(180deg, rgba(255,255,255,.06), transparent); }
+.pick .form { font-size: 0.85rem; color: var(--muted); }
+
+/* bosses */
+.bosses { --seam: var(--soil-5); background: #100c0c; }
+.ladder { display: grid; gap: 4px; }
+.group { margin-top: 14px; }
+.group:first-child { margin-top: 0; }
+.group .label { margin-bottom: 6px; display: block; }
+.rung { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) 4.8rem; gap: 12px; align-items: center; padding: 3px 0; }
+.rung .who { font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rung .who small { color: var(--muted); }
+.rung .track2 { height: 12px; background: rgba(239,226,196,.06); border-radius: 2px; position: relative; }
+.rung .fill { position: absolute; inset: 0 auto 0 0; background: var(--c, var(--ember)); border-radius: 2px; }
+.rung .hp { font-family: var(--mono); font-size: 0.82rem; text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+.scale { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) 4.8rem; gap: 12px; }
+.scale .ticks { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.72rem; color: var(--faint); border-top: 1px solid var(--line); padding-top: 4px; }
+
+/* pets & gear */
+.extras { --seam: #100c0c; background: var(--bedrock); }
+.two { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 28px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 22px; display: grid; gap: 14px; align-content: start; }
+.eggs { display: grid; gap: 6px; }
+.egg { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 12px; padding: 7px 0; border-bottom: 1px dashed var(--line); }
+.egg:last-child { border-bottom: 0; }
+.egg small { display: block; color: var(--muted); font-size: 0.88rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 0.82rem; border: 1px solid var(--c); color: var(--c); padding: 2px 9px; border-radius: 99px; }
+.systems { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 14px; }
+.sys { display: grid; gap: 6px; }
+.sys h3 { font-size: 1.2rem; color: var(--gold); }
+.sys p { color: var(--muted); font-size: 0.95rem; }
+
+/* controls */
+.keys { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 8px 22px; }
+.key { display: flex; gap: 12px; align-items: center; }
+kbd { font-family: var(--mono); font-size: 0.8rem; min-width: 2.2rem; text-align: center; padding: 4px 8px; border-radius: 4px; background: #2a2420; border: 1px solid #4a3e33; box-shadow: 0 2px 0 #4a3e33; color: var(--parchment); }
+
+footer { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 56px; background: var(--bedrock); border-top: 1px solid var(--line); }
+footer .inner { gap: 10px; }
+footer p { color: var(--faint); font-size: 0.9rem; }
+
+@media (max-width: 760px) {
+  .update, .core-wrap, .two { grid-template-columns: minmax(0, 1fr); }
+  .rung, .scale { grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr) 4rem; gap: 8px; }
+  .rung .who small { display: none; }
+  .vein { grid-template-columns: 6rem minmax(0, 1fr) 3.4rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="stratum hero">
+  <div class="grass" aria-hidden="true"></div>
+  <div class="inner">
+    <span class="label">A medieval mining RPG on Roblox</span>
+    <h1>Treasure Below</h1>
+    <p class="tag">Dig through the Deep Mines, forge legendary gear, tame pets that grow into dragons, and fight your way into the Goblin Kingdom.</p>
+    <div class="loop" aria-label="The core loop">
+      <span class="step">Mine</span><span class="arrow">→</span>
+      <span class="step">Sell</span><span class="arrow">→</span>
+      <span class="step">Upgrade</span><span class="arrow">→</span>
+      <span class="step">Fight</span><span class="arrow">→</span>
+      <span class="step">Go deeper</span>
+    </div>
+    <div class="cta">
+      <a class="btn" href="https://www.roblox.com/games/139847927971793" target="_blank" rel="noopener">Play on Roblox</a>
+      <a class="btn ghost" href="#kingdom">What's new</a>
+      <span class="platforms">PC · Xbox · Mobile</span>
+    </div>
+  </div>
+</header>
+
+<section class="stratum news" id="kingdom">
+  <div class="inner">
+    <div class="head">
+      <span class="label">New update · November 8, 2026</span>
+      <h2>The Goblin Kingdom</h2>
+      <p>An endless raid beneath the Goblin Fort. Beat Kragmaw the Warchief to open the gate, then clear floor after floor of the King's goblins for gold. Every run starts on floor 1.</p>
+    </div>
+    <div class="update">
+      <div class="crown">
+        <span class="label">A boss guards every 10th floor</span>
+        <div class="floors">
+          <div class="floor"><span class="n">Floor 10</span><div><b>Gorbag the Siegemaster</b><small>Bombs, mortar barrages and powder kegs</small></div></div>
+          <div class="floor"><span class="n">Floor 20</span><div><b>Nyxa the Hexblade</b><small>Vanishes, strikes from behind, calls Hex Shades</small></div></div>
+          <div class="floor"><span class="n">Floor 30</span><div><b>Grumhold the Iron Juggernaut</b><small>Ram charges, furnace blasts, Meltdown</small></div></div>
+          <div class="floor"><span class="n">Floor 40</span><div><b>Zogra the Beastmistress</b><small>Rides a war-boar. Charges, gores, stampedes</small></div></div>
+          <div class="floor"><span class="n">Floor 50</span><div><b>Mogrul the Goblin Emperor</b><small>Golden rain, his Imperial Guard, the Royal Decree</small></div></div>
+        </div>
+        <p class="note">Past floor 50 the five come back stronger, lap after lap.</p>
+      </div>
+      <ul class="bullets">
+        <li><b>Kragmaw the Warchief.</b> Strike the War Gong in the Fort's War Hall to fight him and his warband.</li>
+        <li><b>New boss gear.</b> Every new boss drops its own armor set, shield and weapon, with set perks like bombs, hexes, gores and crits.</li>
+        <li><b>New goblins.</b> Warband Raiders and Brutes, Kingdom Guards, Berserkers, Champions and Hex Shades.</li>
+        <li><b>Deepest Floor.</b> A Kingdom leaderboard in the Journal, plus badges for floors 10, 25, 50, 75 and 100.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="stratum world" id="world">
+  <div class="inner">
+    <div class="head">
+      <span class="label">The world</span>
+      <h2>Places worth the walk</h2>
+      <p>The zones are far apart on purpose. The deep ones open up as you finish their questlines.</p>
+    </div>
+    <div class="zones">
+      <article class="zone" style="--z: var(--r-uncommon)"><span class="unlock">Open from the start</span><h3>Town</h3><p>Whiskers' Wares, the Enchanter's Altar, Grimbold's Forge, the Hatchery, the Raid Gate and the Hall of Fame.</p></article>
+      <article class="zone" style="--z: var(--r-common)"><span class="unlock">Open from the start</span><h3>The Deep Mines</h3><p>The cave under town. Goblins and brutes guard the richer chambers.</p></article>
+      <article class="zone" style="--z: var(--r-celestial)"><span class="unlock">The Eclipse Prophecy</span><h3>Eclipse Shrine</h3><p>Three trials of the sun and moon, ending at Eclipsar, God of the Sun and Moon.</p></article>
+      <article class="zone" style="--z: var(--r-abyssal)"><span class="unlock">Whispers of the Void</span><h3>The Abyss</h3><p>A void-touched cave in the far north-east, home of Old Tobias's forge and Vor'Thalax, the Abyssal Heart.</p></article>
+      <article class="zone" style="--z: var(--ember)"><span class="unlock">Far south-west</span><h3>Goblin Fort</h3><p>A palisade full of goblins and archer towers. The War Hall holds the Warchief. The Kingdom Gate leads below.</p></article>
+      <article class="zone" style="--z: var(--r-rare)"><span class="unlock">The Skyward Path</span><h3>Skyreach</h3><p>Floating islands of sky pirates, storm brutes and sky ores, reached by Captain Gale's Sky Lift.</p></article>
+      <article class="zone" style="--z: var(--r-primordial)"><span class="unlock">The Brood Awakens</span><h3>The Broodhollow</h3><p>A giant anthill of ants and spiders, with Vesskar the Thousand-Leg in its heart.</p></article>
+      <article class="zone" style="--z: var(--r-ancient)"><span class="unlock">The Withering Root</span><h3>Rootdeep</h3><p>The roots of a dead world-tree, guarded by Gnarlroot, the Elder Root.</p></article>
+      <article class="zone" style="--z: var(--gold)"><span class="unlock">Beat the Warchief</span><h3>The Goblin Kingdom</h3><p>An endless floor-by-floor raid. How deep can you go?</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="stratum ores" id="ores">
+  <div class="inner">
+    <div class="head">
+      <span class="label">Ore</span>
+      <h2>32 ores, from Stone to Elderbloom</h2>
+      <p>Everything you mine sells for gold, feeds your pets, or fortifies your gear at Grimbold's Forge, where better ore gives a bigger bonus.</p>
+    </div>
+    <div class="core-wrap">
+      <div class="core" id="core" aria-label="Ore sell values, drawn to scale"></div>
+      <div class="head">
+        <h3>Reading the core sample</h3>
+        <p class="note">Each bar is one ore's sell value per piece, all drawn on the same scale, coloured by rarity. Elderbloom, the deepest, sells for 3,400 gold. Stone sells for 1.</p>
+        <div class="legend" id="legend"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stratum picks" id="pickaxes">
+  <div class="inner">
+    <div class="head">
+      <span class="label">Pickaxes</span>
+      <h2>Every pickaxe swings differently</h2>
+      <p>21 pickaxes, each with its own swing. The top ones change who you are: Dawn and Dusk give you wings and a halo, Voidbreaker rips open rifts, and Worldroot rides a pillar of roots.</p>
+    </div>
+    <div class="track-wrap"><div class="track" id="track"></div></div>
+    <p class="note">Scroll sideways for the full ladder. Prices are in gold at Whiskers' Wares or Old Tobias's forge.</p>
+  </div>
+</section>
+
+<section class="stratum bosses" id="bosses">
+  <div class="inner">
+    <div class="head">
+      <span class="label">Bosses</span>
+      <h2>Eighteen bosses, and they hit hard</h2>
+      <p>Raid bosses have phases, telegraphed attacks and summons. Most drop their own armor set, shield and weapon at 15%. Health scales up with your party.</p>
+    </div>
+    <div class="ladder" id="ladder"></div>
+    <div class="scale" aria-hidden="true"><span></span><div class="ticks"><span>0</span><span>50k</span><span>100k</span><span>150k</span><span>200k HP</span></div><span></span></div>
+  </div>
+</section>
+
+<section class="stratum extras" id="more">
+  <div class="inner">
+    <div class="two">
+      <div class="card">
+        <span class="label">Pets</span>
+        <h3>Hatch them small. Ride them grown.</h3>
+        <p class="note">Babies grow into adults you can ride, and flyers bank, climb and dive. Up to four pets can follow you into a fight.</p>
+        <div class="eggs">
+          <div class="egg"><div><b>Forest Egg</b><small>Wolf, Fox, Bunny, Bear, Owl</small></div><span class="num">750</span></div>
+          <div class="egg"><div><b>Royal Egg</b><small>Lion, Bear, Owl, Unicorn, Griffin</small></div><span class="num">6,000</span></div>
+          <div class="egg"><div><b>Mythic Egg</b><small>Unicorn, Griffin, Dragon</small></div><span class="num">30,000</span></div>
+          <div class="egg"><div><b>Void Egg</b><small>Void Squid, Abyssal Hydra, Void Amphiptere</small></div><span class="num">250,000</span></div>
+          <div class="egg"><div><b>Brood Egg</b><small>Warrior Ant, Widow Spider, Ant Queen</small></div><span class="num">500,000</span></div>
+        </div>
+        <div class="chips" id="petchips"></div>
+      </div>
+      <div class="card">
+        <span class="label">Keep growing</span>
+        <h3>Systems for the long haul</h3>
+        <div class="systems">
+          <div class="sys"><h3>Enchanting</h3><p>39 weapon and 31 pickaxe enchants, Common up to Mythic, at the Enchanter's Altar.</p></div>
+          <div class="sys"><h3>Fortifying</h3><p>Ten ore levels on every pickaxe, weapon, shield and armor piece at Grimbold's Forge.</p></div>
+          <div class="sys"><h3>Armor sets</h3><p>Mix helmets, chestplates and greaves. A full set gives bonus health and a perk.</p></div>
+          <div class="sys"><h3>Collection Book</h3><p>Fill in every ore, creature, piece of gear and pet for gold and permanent perks.</p></div>
+          <div class="sys"><h3>Badges & dailies</h3><p>72 badges, daily quests, login streaks, rebirths and global leaderboards.</p></div>
+          <div class="sys"><h3>Questlines</h3><p>Five storylines: Eclipse, Void, Sky, Brood and Root. Each one opens a new part of the world.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="label">Controls (PC)</span>
+      <div class="keys">
+        <div class="key"><kbd>Click</kbd><span>Mine and attack</span></div>
+        <div class="key"><kbd>1</kbd><kbd>2</kbd><span>Pickaxe / weapon</span></div>
+        <div class="key"><kbd>F</kbd><span>Block (parry if it's well timed)</span></div>
+        <div class="key"><kbd>Shift</kbd><span>Sprint</span></div>
+        <div class="key"><kbd>E</kbd><span>Talk, open, use</span></div>
+        <div class="key"><kbd>R</kbd><span>Ride your pet</span></div>
+        <div class="key"><kbd>B</kbd><span>Inventory</span></div>
+        <div class="key"><kbd>P</kbd><span>Pets</span></div>
+        <div class="key"><kbd>K</kbd><span>Collection Book</span></div>
+      </div>
+      <p class="note">Every action can be rebound in the Keys menu. Xbox controllers get a free-moving menu cursor, and phones get a touch-button ring.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <span class="label">Treasure Below</span>
+    <p>Numbers on this page come from the game's own data as of the Goblin Kingdom update and may change with balance passes.</p>
+  </div>
+</footer>
+
+<script>
+const RAR = { Common:"--r-common", Uncommon:"--r-uncommon", Rare:"--r-rare", Epic:"--r-epic", Legendary:"--r-legendary", Mythic:"--r-mythic", Divine:"--r-divine", Celestial:"--r-celestial", Abyssal:"--r-abyssal", Primordial:"--r-primordial", Ancient:"--r-ancient" };
+const c = r => `var(${RAR[r] || "--r-common"})`;
+const fmt = n => n.toLocaleString("en-US");
+
+// Ores in game order, each [name, rarity, sell value]
+const ORES = [["Stone","Common",1],["Coal","Common",2],["Copper","Common",3],["Iron","Uncommon",6],["Gold","Rare",12],["Crystal","Rare",25],["Amethyst","Epic",35],["Emerald","Epic",50],["Ruby","Epic",70],["Magma","Legendary",90],["Obsidian","Legendary",120],["Mythril","Mythic",160],["Skysilver","Epic",200],["Adamantite","Mythic",220],["Sunstone","Celestial",260],["Moonstone","Celestial",260],["Voidstone","Mythic",340],["Stormquartz","Legendary",360],["Silkstone","Mythic",380],["Starmetal","Celestial",480],["Sunpearl","Mythic",560],["Amber","Celestial",620],["Dragonheart","Abyssal",700],["Sapstone","Celestial",760],["Aetherium","Celestial",900],["Abyssium","Abyssal",1000],["Chitinite","Abyssal",1150],["Rootsilver","Abyssal",1350],["Venomite","Primordial",1600],["Heartwood","Primordial",2000],["Broodjewel","Primordial",2400],["Elderbloom","Ancient",3400]];
+const maxOre = 3400;
+document.getElementById("core").innerHTML = ORES.map(([n, r, v]) =>
+  `<div class="vein"><span class="name">${n}</span><span class="bar" style="--c:${c(r)};width:${Math.max(v / maxOre * 100, 0.6)}%" title="${r}"></span><span class="v">${fmt(v)}</span></div>`).join("");
+const used = [...new Set(ORES.map(o => o[1]))];
+document.getElementById("legend").innerHTML = used.map(r => `<span><i style="--c:${c(r)}"></i>${r}</span>`).join("");
+
+// Pickaxes in shop order: [name, tier, price, form]
+const PICKS = [["Bronze Pickaxe","Common",0],["Silver Pickaxe","Common",60],["Gold Pickaxe","Uncommon",200],["Banana Pickaxe","Rare",400],["Emerald Pickaxe","Rare",750],["Ruby Pickaxe","Rare",1100],["Sapphire Pickaxe","Rare",1100],["Diamond Pickaxe","Epic",2500],["Crystal Pickaxe","Epic",4000],["Emerald Hammer","Epic",6500],["Ruby Hammer","Epic",8000],["Lightning Pickaxe","Legendary",15000],["Dawn Pickaxe","Divine",40000,"Wings, halo and a sun"],["Dusk Pickaxe","Divine",40000,"Wings and a flat moon"],["Eclipse Pickaxe","Celestial",100000],["Voidbreaker Pickaxe","Abyssal",300000,"Rift portals"],["Abyssal Pickaxe","Abyssal",900000,"A sky eye and tentacles"],["Swarmcaller Pickaxe","Primordial",2500000,"Rides an ant mound"],["Broodmother Pickaxe","Primordial",6000000,"Walks on spider legs"],["Thornreaver Pickaxe","Ancient",9000000,"Whips a thorn vine"],["Worldroot Pickaxe","Ancient",14000000,"Rides a pillar of roots"]];
+document.getElementById("track").innerHTML = PICKS.map(([n, t, p, form]) =>
+  `<div class="pick${form ? " star" : ""}" style="--c:${c(t)}"><span class="tier">${t}</span><span class="nm">${n.replace(" Pickaxe", "")}</span>${form ? `<span class="form">${form}</span>` : ""}<span class="price">${p ? fmt(p) : "Starter"}</span></div>`).join("");
+
+// Bosses: [group, name, title, hp, color]
+const BOSSES = [
+  ["Raid Gate", "Grukk the Goblin King", "Lord of the Deep Mines", 2000, "#78c850"],
+  ["Raid Gate", "The Stone Colossus", "Heart of the Mountain", 5000, "#6ec8ff"],
+  ["Raid Gate", "Ignaroth the Ember Dragon", "Terror of the Peaks", 10000, "#ff7828"],
+  ["Eclipse trials", "Solarius", "Trial of the Sun", 9000, "#ffc846"],
+  ["Eclipse trials", "Nocturne", "Trial of the Moon", 11000, "#aa78ff"],
+  ["Eclipse trials", "Eclipsar", "God of the Sun and Moon", 22000, "#ffaa3c"],
+  ["Goblin Fort", "Kragmaw the Warchief", "Blade of the Goblin Kingdom", 30000, "#e63c28"],
+  ["Elder Gate", "Hrimfang the Frost Wyrm", "Winter Without End", 40000, "#96dcff"],
+  ["Elder Gate", "Thalassor the Kraken", "Terror of the Drowned Deep", 45000, "#46c8be"],
+  ["Elder Gate", "Mordrath the Lich King", "Lord of the Restless Dead", 50000, "#78ff96"],
+  ["Elder Gate", "Volgarr the Storm Titan", "The Thunder That Walks", 60000, "#ffe15a"],
+  ["The Abyss", "Vor'Thalax", "The Abyssal Heart", 50000, "#3cf0e1"],
+  ["Broodhollow", "Vesskar the Thousand-Leg", "Wyrm of the Brood", 100000, "#aaff46"],
+  ["Rootdeep", "Gnarlroot, the Elder Root", "Heart of the World-Tree", 150000, "#ff823c"],
+  ["Goblin Kingdom", "Gorbag the Siegemaster", "Floor 10", 45000, "#ff9628"],
+  ["Goblin Kingdom", "Nyxa the Hexblade", "Floor 20", 70000, "#b46cff"],
+  ["Goblin Kingdom", "Grumhold the Iron Juggernaut", "Floor 30", 100000, "#ff7832"],
+  ["Goblin Kingdom", "Zogra the Beastmistress", "Floor 40", 140000, "#dc8c46"],
+  ["Goblin Kingdom", "Mogrul the Goblin Emperor", "Floor 50", 200000, "#ffd246"],
+];
+const groups = [...new Set(BOSSES.map(b => b[0]))];
+const SCALE = 200000;
+document.getElementById("ladder").innerHTML = groups.map(g =>
+  `<div class="group"><span class="label">${g}</span>${BOSSES.filter(b => b[0] === g).map(([, n, t, hp, col]) =>
+    `<div class="rung"><span class="who">${n} <small>· ${t}</small></span><span class="track2"><span class="fill" style="--c:${col};width:${hp / SCALE * 100}%"></span></span><span class="hp">${fmt(hp)}</span></div>`).join("")}</div>`).join("");
+
+// Pets by rarity
+const PETS = [["Wolf","Common"],["Fox","Common"],["Bunny","Common"],["Bear","Rare"],["Lion","Rare"],["Owl","Rare"],["Unicorn","Epic"],["Griffin","Epic"],["Dragon","Legendary"],["Void Squid","Abyssal"],["Abyssal Hydra","Abyssal"],["Void Amphiptere","Abyssal"],["Warrior Ant","Primordial"],["Widow Spider","Primordial"],["Ant Queen","Primordial"]];
+document.getElementById("petchips").innerHTML = PETS.map(([n, r]) => `<span class="chip" style="--c:${c(r)}">${n}</span>`).join("");
+</script>
+</body>
+</html>
