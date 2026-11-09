@@ -221,6 +221,7 @@ function source(it) {
     const gate = it.Root ? "the Withering Root" : it.Brood ? "the Brood Awakens" : "Whispers of the Void";
     return { text: "Old Tobias's forge, after " + gate, html: `Old Tobias's forge, after <a href="#quests">${gate}</a>`, kind: "Tobias" };
   }
+  if (it.Shop === "Tree") return { text: "Bumbleworth's Honeyworks, after the Waking Tree", html: "Bumbleworth's Honeyworks, after <a href=\"#quests\">the Waking Tree</a>", kind: "Bumbleworth" };
   return { text: "Whiskers' Wares", html: "Whiskers' Wares", kind: "Shop" };
 }
 function price(it) { return it.Shop === "Boss" ? "Drop only" : it.Price ? fmt(it.Price) : "Starter"; }
@@ -251,7 +252,7 @@ function route() {
   current = page;
   const render = PAGES[page] || PAGES.home;
   closeDrawer();
-  $("#main").innerHTML = `<div class="page">${render(arg)}</div><footer>All numbers come straight from the game's data as of the Goblin Kingdom update. Balance can change in future updates.</footer>`;
+  $("#main").innerHTML = `<div class="page">${render(arg)}</div><footer>All numbers come straight from the game's data as of ${esc(G.updates[0]?.Title || "the latest")} update. Balance can change in future updates.</footer>`;
   document.querySelectorAll("nav.tabs a").forEach(a => a.classList.toggle("on", a.dataset.r === (page === "boss" ? "bosses" : page)));
   const on = document.querySelector("nav.tabs a.on");
   if (on && window.innerWidth <= 860) on.scrollIntoView({ inline: "center", block: "nearest" });
@@ -343,7 +344,7 @@ PAGES.zones = () => `
 // ---------------------------------------------------------------- ores
 PAGES.ores = () => {
   const rows = G.ores.order.map((k, i) => { const o = G.ores.items[k]; return { _key: k, i, name: k, display: o.Display, rarity: o.Rarity, value: o.Value, hp: o.Health, respawn: o.Respawn, drops: o.Drops, fort: G.fortify.oreBonus[k] }; });
-  return `<div class="head"><span class="label">Mining</span><h1>Ores</h1><p>Everything you mine sells for gold at Whiskers' Wares or Old Tobias's forge, feeds your pets, or fortifies your gear. Hardness is how much mining it takes to break the node. Click an ore for details.</p></div>
+  return `<div class="head"><span class="label">Mining</span><h1>Ores</h1><p>Everything you mine sells for gold at Whiskers' Wares, Old Tobias's forge or Bumbleworth's Honeyworks, feeds your pets, or fortifies your gear. Hardness is how much mining it takes to break the node. Click an ore for details.</p></div>
   ${table("t-ores", [
     { label: "Ore", html: r => `${dot(r.rarity)}<span class="name">${esc(r.name)}</span>`, sort: r => r.name },
     { label: "Rarity", html: r => chip(r.rarity), sort: r => tierRank(r.rarity) },
@@ -603,8 +604,8 @@ OPENERS.pets = k => {
 };
 
 // ---------------------------------------------------------------- quests
-const QORDER = [["QuestData", "Opens the Eclipse gear and pickaxe"], ["VoidQuestData", "Opens The Abyss and Old Tobias's forge"], ["SkyQuestData", "Opens Skyreach and the Sky Lift"], ["BroodQuestData", "Opens the Broodhollow and Brood gear"], ["RootQuestData", "Opens Rootdeep and its gear"]];
-PAGES.quests = () => `<div class="head"><span class="label">Progress</span><h1>Questlines</h1><p>Five storylines. Each opens a new part of the world. Tribute steps take ore from your bag.</p></div>
+const QORDER = [["QuestData", "Opens the Eclipse gear and pickaxe"], ["VoidQuestData", "Opens The Abyss and Old Tobias's forge"], ["SkyQuestData", "Opens Skyreach and the Sky Lift"], ["BroodQuestData", "Opens the Broodhollow and Brood gear"], ["RootQuestData", "Opens Rootdeep and its gear"], ["TreeQuestData", "Grows the world-tree: the Heartwood Hollow, the Beehive and Bumbleworth's pickaxes"]];
+PAGES.quests = () => `<div class="head"><span class="label">Progress</span><h1>Questlines</h1><p>Six storylines. Each opens a new part of the world. Tribute steps take ore from your bag.</p></div>
   ${QORDER.map(([id, opens]) => { const q = G.quests[id]; return `<section class="card"><span class="label">${esc(q.giver || "")} · ${opens}</span><h2>${esc(q.name)}</h2><blockquote>${esc(q.intro)}</blockquote>
     <ol class="steps">${q.steps.map(s => `<li><div><b>${esc(s.Title)}</b> <span class="muted">· ${esc(s.Goal)}${s.Count && !/\d/.test(s.Goal) ? " (" + s.Count + ")" : ""}</span><div class="lore">${esc(s.Lore)}</div></div></li>`).join("")}</ol>
     <p class="muted"><b>When you finish:</b> ${esc(q.finished)}</p></section>`; }).join("")}`;

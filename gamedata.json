@@ -21,7 +21,11 @@
    "Swarmcaller Pickaxe",
    "Broodmother Pickaxe",
    "Thornreaver Pickaxe",
-   "Worldroot Pickaxe"
+   "Worldroot Pickaxe",
+   "Heartamber Pickaxe",
+   "Snapjaw Pickaxe",
+   "Hivequeen Pickaxe",
+   "Galeleaf Pickaxe"
   ],
   "items": {
    "Swarmcaller Pickaxe": {
@@ -222,6 +226,54 @@
     "Aura": "Void",
     "Price": 14000000,
     "Root": true
+   },
+   "Heartamber Pickaxe": {
+    "Power": 2700,
+    "Price": 20000000,
+    "Tree": true,
+    "Shop": "Tree",
+    "Yield": 10,
+    "Tier": "Ancient",
+    "Style": "Amber",
+    "Splash": 38,
+    "Aura": "Void",
+    "Color": "#ff961e"
+   },
+   "Snapjaw Pickaxe": {
+    "Power": 3100,
+    "Price": 27000000,
+    "Tree": true,
+    "Shop": "Tree",
+    "Yield": 10,
+    "Tier": "Ancient",
+    "Style": "Snap",
+    "Splash": 40,
+    "Aura": "Void",
+    "Color": "#78c83c"
+   },
+   "Hivequeen Pickaxe": {
+    "Power": 3500,
+    "Price": 35000000,
+    "Tree": true,
+    "Shop": "Tree",
+    "Yield": 11,
+    "Tier": "Ancient",
+    "Style": "Hive",
+    "Splash": 42,
+    "Aura": "Void",
+    "Color": "#ffc832"
+   },
+   "Galeleaf Pickaxe": {
+    "Power": 4200,
+    "Price": 50000000,
+    "Tree": true,
+    "Shop": "Tree",
+    "Yield": 12,
+    "Tier": "Ancient",
+    "Style": "Gale",
+    "Splash": 46,
+    "Aura": "Void",
+    "Color": "#8ce696"
    }
   }
  },
@@ -3778,6 +3830,99 @@
    "Speed": 14,
    "AttackRange": 4.5,
    "Damage": 8
+  },
+  "Barkbeetle": {
+   "AttackCooldown": 1.4,
+   "Scale": 1.5,
+   "Health": 9000,
+   "Skin": "#60462c",
+   "Coins": [
+    1300,
+    1800
+   ],
+   "Attacks": [
+    "Bite",
+    "Bite",
+    "Slam"
+   ],
+   "Cloth": "#3a281a",
+   "Name": "Barkbeetle",
+   "AttackRange": 6.5,
+   "Speed": 17,
+   "Kind": "Beetle",
+   "Eye": "#ffaa32",
+   "Damage": 110
+  },
+  "Stagborer": {
+   "Speed": 13,
+   "Mark": "#6eaa46",
+   "Elite": true,
+   "Scale": 2.3,
+   "Cloth": "#2c2216",
+   "Skin": "#465c34",
+   "Coins": [
+    3200,
+    4200
+   ],
+   "Attacks": [
+    "Bite",
+    "Slam"
+   ],
+   "Name": "Stagborer",
+   "Health": 22000,
+   "AttackRange": 9,
+   "Eye": "#ff7828",
+   "Kind": "Beetle",
+   "AttackCooldown": 2.1,
+   "Damage": 170
+  },
+  "HoneyDrone": {
+   "PounceRange": 24,
+   "AttackCooldown": 1.3,
+   "Scale": 1.3,
+   "Health": 11000,
+   "Skin": "#ecb028",
+   "Coins": [
+    1600,
+    2200
+   ],
+   "Attacks": [
+    "Bite",
+    "Bite",
+    "Pounce"
+   ],
+   "Cloth": "#221a14",
+   "Name": "Honey Drone",
+   "AttackRange": 7,
+   "Speed": 22,
+   "Kind": "Bee",
+   "Eye": "#ffe678",
+   "Damage": 125
+  },
+  "HiveGuard": {
+   "Eye": "#ff783c",
+   "Mark": "#ffc83c",
+   "PounceRange": 26,
+   "Attacks": [
+    "Bite",
+    "Slam",
+    "Pounce"
+   ],
+   "Scale": 2,
+   "Cloth": "#1c1410",
+   "Skin": "#d6821e",
+   "Coins": [
+    3800,
+    4800
+   ],
+   "Elite": true,
+   "Name": "Hive Guard",
+   "Health": 26000,
+   "AttackRange": 9,
+   "Speed": 17,
+   "Kind": "Bee",
+   "AttackCooldown": 2,
+   "Damage": 180
   }
  },
  "rebirth": {
@@ -3797,6 +3942,44 @@
   "sellBonus": 0.25
  },
  "updates": [
+  {
+   "Id": "2026-11-09",
+   "Date": "November 9, 2026",
+   "Title": "The Waking Tree",
+   "Color": "#82c850",
+   "Items": [
+    {
+     "Icon": "🌱",
+     "Title": "Rootdeep, part 2",
+     "Text": "Finished Fennick's quest? Look up at the old stump - something green is growing. Meet Oakhollow the Tree Keeper behind Fennick's camp."
+    },
+    {
+     "Icon": "🌳",
+     "Title": "Grow the world-tree",
+     "Text": "Oakhollow's new questline, The Waking Tree, makes the tree grow with every step - your own tree, saved with your quest. Climb the root stair and the spiral up the trunk."
+    },
+    {
+     "Icon": "🕳️",
+     "Title": "The Heartwood Hollow",
+     "Text": "A warm room inside the trunk, crawling with Barkbeetles and the huge Stagborer. Gather the amber tears and mine the new Heartamber ore."
+    },
+    {
+     "Icon": "🐝",
+     "Title": "The Beehive",
+     "Text": "A giant hive on the tree's great branch - Broodhollow kin. Honey Drones and Hive Guards dive and sting. Mine Royal Honeycomb."
+    },
+    {
+     "Icon": "⛏️",
+     "Title": "Bumbleworth's Honeyworks",
+     "Text": "A new shop by Oakhollow, run by Bumbleworth the Beekeeper. Four new pickaxes with their own forms: Heartamber (amber shards, crystal shatter), Snapjaw (a giant flytrap), Hivequeen (ride a giant bee) and Galeleaf (ride a whirlwind). Unlocked by finishing The Waking Tree."
+    },
+    {
+     "Icon": "🏅",
+     "Title": "Rewards",
+     "Text": "500,000 gold and the Crown of the World-Tree badge for waking the crown, plus 4 new creatures and 2 new ores for the Collection Book."
+    }
+   ]
+  },
   {
    "Items": [
     {
@@ -4603,11 +4786,21 @@
    "Reward": 100000
   },
   {
+   "Desc": "Complete The Waking Tree",
+   "Id": "TreeQuest",
+   "Name": "Crown of the World-Tree",
+   "Tier": "Mythic",
+   "Special": "TreeQuest",
+   "Icon": "🌳",
+   "Reward": 150000,
+   "Order": 61
+  },
+  {
    "Desc": "Complete every questline",
    "Id": "AllQuests",
    "Name": "Loremaster",
    "Tier": "Mythic",
-   "Order": 61,
+   "Order": 62,
    "All": [
     "Prophecy",
     "VoidQuest",
@@ -4623,7 +4816,7 @@
    "Id": "Enchant",
    "Name": "Spellbound",
    "Tier": "Bronze",
-   "Order": 62,
+   "Order": 63,
    "Special": "Enchant",
    "Icon": "✨",
    "Reward": 500
@@ -4633,7 +4826,7 @@
    "Id": "EnchantMythic",
    "Name": "Mythic Touch",
    "Tier": "Mythic",
-   "Order": 63,
+   "Order": 64,
    "Special": "EnchantMythic",
    "Icon": "🪄",
    "Reward": 20000
@@ -4643,7 +4836,7 @@
    "Id": "Fortify",
    "Name": "Apprentice Smith",
    "Tier": "Bronze",
-   "Order": 64,
+   "Order": 65,
    "Special": "Fortify",
    "Icon": "🔨",
    "Reward": 500
@@ -4653,7 +4846,7 @@
    "Id": "Fortify10",
    "Name": "Master Smith",
    "Tier": "Gold",
-   "Order": 65,
+   "Order": 66,
    "Special": "Fortify10",
    "Icon": "⚒️",
    "Reward": 25000
@@ -4663,7 +4856,7 @@
    "Id": "Bloomforged",
    "Name": "Bloomforged",
    "Tier": "Mythic",
-   "Order": 66,
+   "Order": 67,
    "Special": "Bloomforged",
    "Icon": "🌺",
    "Reward": 100000
@@ -4673,7 +4866,7 @@
    "Id": "Grown",
    "Name": "Proud Owner",
    "Tier": "Silver",
-   "Order": 67,
+   "Order": 68,
    "Special": "Grown",
    "Icon": "🐾",
    "Reward": 2000
@@ -4683,7 +4876,7 @@
    "Id": "Pets10",
    "Name": "Menagerie",
    "Tier": "Silver",
-   "Order": 68,
+   "Order": 69,
    "Special": "Pets10",
    "Icon": "🦊",
    "Reward": 5000
@@ -4693,7 +4886,7 @@
    "Id": "PetSlots4",
    "Name": "Pack Leader",
    "Tier": "Gold",
-   "Order": 69,
+   "Order": 70,
    "Special": "PetSlots4",
    "Icon": "🐺",
    "Reward": 20000
@@ -4703,7 +4896,7 @@
    "Id": "BookPage",
    "Name": "Collector",
    "Tier": "Gold",
-   "Order": 70,
+   "Order": 71,
    "Special": "BookPage",
    "Icon": "📖",
    "Reward": 25000
@@ -4713,7 +4906,7 @@
    "Id": "BookAll",
    "Name": "Completionist",
    "Tier": "Mythic",
-   "Order": 71,
+   "Order": 72,
    "Special": "BookAll",
    "Icon": "📚",
    "Reward": 250000
@@ -4723,7 +4916,7 @@
    "Id": "Streak7",
    "Name": "Loyal Miner",
    "Tier": "Gold",
-   "Order": 72,
+   "Order": 73,
    "Special": "Streak7",
    "Icon": "📅",
    "Reward": 5000
@@ -4732,7 +4925,7 @@
  "collection": {
   "pages": [
    {
-    "count": 32,
+    "count": 34,
     "perk": {
      "Value": 1.1,
      "Text": "+10% gold from selling ore",
@@ -4742,7 +4935,7 @@
     "title": "Ores"
    },
    {
-    "count": 39,
+    "count": 43,
     "perk": {
      "Value": 1.1,
      "Text": "+10% damage to monsters and bosses",
@@ -4752,7 +4945,7 @@
     "title": "Creatures"
    },
    {
-    "count": 102,
+    "count": 106,
     "perk": {
      "Value": 1.1,
      "Text": "+10% mining power",
@@ -4903,7 +5096,9 @@
    "Sapstone",
    "Rootsilver",
    "Heartwood",
-   "Elderbloom"
+   "Elderbloom",
+   "Heartamber",
+   "Honeycomb"
   ],
   "rarities": {
    "Ancient": "#ffcd3c",
@@ -5409,6 +5604,38 @@
     "Style": "Gems",
     "Respawn": 25,
     "Display": "Ruby"
+   },
+   "Heartamber": {
+    "Rock": "#6e4a2c",
+    "Rarity": "Ancient",
+    "Drops": [
+     1,
+     2
+    ],
+    "Color": "#ff961e",
+    "Chunk": "Diamond",
+    "Health": 14000,
+    "Display": "Heartamber",
+    "Value": 3900,
+    "Style": "Gems",
+    "Respawn": 85,
+    "Glow": true
+   },
+   "Honeycomb": {
+    "Rock": "#c49646",
+    "Rarity": "Ancient",
+    "Drops": [
+     1,
+     2
+    ],
+    "Color": "#ffc832",
+    "Chunk": "Crystal",
+    "Health": 16000,
+    "Display": "Royal Honeycomb",
+    "Value": 4600,
+    "Style": "Crystals",
+    "Respawn": 90,
+    "Glow": true
    }
   }
  },
@@ -6424,6 +6651,70 @@
     }
    ],
    "intro": "I tended this tree for three hundred years, and now look at it. Dead, and rotting from the roots up. Something is still alive in there, feeding on it. Help me reach the heart, and I'll see that Old Tobias gets wood and ore no forge has ever touched."
+  },
+  "TreeQuestData": {
+   "name": "The Waking Tree",
+   "giver": "Oakhollow the Tree Keeper",
+   "intro": "Fennick tends the roots, and I tend the rest. Always have. I was asleep in a knot of bark for a hundred years, until you woke the Heartroot. Now the old girl wants to grow again, and I could use a strong pair of hands.",
+   "finished": "There she is, as green as the day I planted her. The Hollow and the Hive are yours to roam. Mind the bees, they've got long memories.",
+   "steps": [
+    {
+     "Tribute": [
+      [
+       "Sapstone",
+       40
+      ],
+      [
+       "Rootsilver",
+       30
+      ],
+      [
+       "Heartwood",
+       10
+      ],
+      [
+       "Elderbloom",
+       3
+      ]
+     ],
+     "Title": "Feed the Roots",
+     "Kind": "Tribute",
+     "Goal": "Bring 40 Sapstone, 30 Rootsilver, 10 Heartwood and 3 Elderbloom",
+     "Grows": true,
+     "Lore": "See that green shoot up on the stump? The old tree isn't dead after all, it's starving. Bring me ore from its own roots and I'll work it into the soil. Feed it well, and it'll grow fast enough to make your head spin."
+    },
+    {
+     "Title": "Clear the Hollow",
+     "Variant": "Barkbeetle",
+     "Goal": "Slay Barkbeetles in the Heartwood Hollow",
+     "Kind": "Kills",
+     "Count": 120,
+     "Lore": "Ha! Look at her go! The trunk's grown right over the old stump, and there's a hollow in her base. Climb the root stair. Trouble is, beetles got in before we did. They chew the heartwood, and the tree can't grow any more while they're in there. Thin them out."
+    },
+    {
+     "Title": "Amber Tears",
+     "Goal": "Gather the 5 amber tears in the Hollow",
+     "Kind": "Amber",
+     "Count": 5,
+     "Grows": true,
+     "Lore": "When a tree is hurt, it weeps amber. There are five big tears in the Hollow, glowing where the beetles chewed. Gather them all and bring the tree's pain back to me. I'll press it into the roots, and she'll reach for the sky."
+    },
+    {
+     "Title": "Smoke the Hive",
+     "Variant": "HoneyDrone",
+     "Goal": "Slay Honey Drones in the Beehive",
+     "Kind": "Kills",
+     "Count": 150,
+     "Lore": "Well, I didn't plan on that. The bees from the Broodhollow have built a hive on her biggest branch, and those are no honeybees, they're the size of a pony. Climb the trunk, walk the branch, and knock that swarm back before they strip her bare."
+    },
+    {
+     "Title": "Wake the Crown",
+     "Goal": "Return to Oakhollow",
+     "Kind": "Talk",
+     "Grows": true,
+     "Lore": "Do you hear that? The whole tree is humming. She's ready. Give me your hand, and we'll wake the crown together, the way it was before the rot."
+    }
+   ]
   }
  },
  "loot": {
