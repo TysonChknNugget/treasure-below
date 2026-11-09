@@ -83,6 +83,10 @@ BOSS_WHERE = {
     "Fort": "War Gong, Goblin Fort War Hall",
     "Kingdom": "The Goblin Kingdom",
 }
+# Bosses whose door isn't where the rest of their group's is
+BOSS_WHERE_KEY = {
+    "QueenBee": "The royal cell on the Beehive (The Waking Tree)",
+}
 BOSS_GROUP_NAME = {
     "Raid": "Raid Gate", "Quest": "Eclipse Trials", "Abyss": "The Abyss", "Elder": "Elder Gate",
     "Brood": "The Broodhollow", "Root": "Rootdeep", "Fort": "Goblin Fort", "Kingdom": "Goblin Kingdom",
@@ -102,6 +106,7 @@ BOSS_NOTES = {
     "LichKing": ["Phase 1: Soul Bolts, Bone Spikes (circles under everyone), Death Nova when you get close. He blinks around the crypt between casts.", "Phase 2 (below 60%): + Raise Dead (Bone Thralls rise; he's warded while any stand) and Soul Drain (get out of his reach).", "Phase 3 (below 30%): + Necrotic Field: the whole floor rots except three circles of light."],
     "StormTitan": ["Phase 1: Thunder Slam, Chain Lightning (bolts on everyone, in two waves), Hammer Throw (a line), and a stomp if you're underfoot.", "Phase 2 (below 66%): + Charge (he barrels along a line) and Storm Surge (strikes cascade across the peak).", "Phase 3 (below 33%): + Eye of the Storm: the whole peak is struck except a ring right around him. Get close!"],
     "Centipede": ["It slithers round the burrow without stopping, and its whole body hurts to touch.", "Phase 1: Bite, Venom Spit (globs that leave poison pools), Rush (a charge along a line) and Tail Lash.", "Phase 2 (below 66%): + Burrow (it dives under the floor and erupts beneath raiders; it can only be hurt while out of the ground) and Brood Call (spiders and a soldier ant).", "Phase 3 (below 33%): + Constrict: everyone outside the middle takes 75% of their health. Get to the centre!"],
+    "QueenBee": ["She flies the whole fight: a bee the size of a house with a crown of royal wax.", "Phase 1: Sting Dive (she dives along a line), Honey Spit (globs that leave burning honey pools) and Wing Gust if you're underneath her.", "Phase 2 (below 66%): + Honey Rain (honey pours onto every raider, three times) and Call the Swarm (Honey Drones and a Hive Guard).", "Phase 3 (below 33%): + Smoke Out: the whole swarm boils out of the walls. Only the smoke of the three smoke pots is safe. Calls bring two Hive Guards."],
     "Gnarlroot": ["Phase 1: Root Slam, Thorn Volley (thorns rain on everyone, in two waves), and a Sweep if you're close.", "Phase 2 (below 66%): + Root Eruption (roots burst up under every raider, three times) and Call (Rootlings and a Thornspitter).", "Phase 3 (below 33%): + Strangle: roots crush the whole hollow except a ring right around him. Get close! Calls bring a Moss Golem."],
     "Warchief": ["Unlike Grukk he fights up front and calls his warband to help.", "Phase 1: Cleave (a wide chop in front), Leap Slam (he jumps onto whoever is far away) and War Horn (Warband Raiders charge in from the gates).", "Phase 2 (below 66%): + Cleaver Throw (the cleaver spins out along a line and back), and the horn brings a Warband Brute too.", "Phase 3 (below 33%): Bloodrage. Faster, harder, and Whirlwind: he spins after you with the cleaver out."],
     "Siegemaster": ["He fights from range and makes the floor explode.", "Phase 1: Bomb Toss, Mortar Barrage (shells rain over the floor) and Wrench Smash if you get close.", "Phase 2 (below 66%): + Powder Kegs (they blow up after a fuse) and two Kingdom Guards.", "Phase 3 (below 33%): + Carpet Bomb (a line of blasts walks toward you). Faster fuses."],
@@ -124,7 +129,7 @@ for g, keys in groups.items():
     for k in keys:
         b = D["bosses"]["items"][k]
         b["Group"] = BOSS_GROUP_NAME[g]
-        b["Where"] = BOSS_WHERE[g] if g != "Kingdom" else f"The Goblin Kingdom, floor {b.get('Floor')}"
+        b["Where"] = BOSS_WHERE_KEY.get(k) or (BOSS_WHERE[g] if g != "Kingdom" else f"The Goblin Kingdom, floor {b.get('Floor')}")
         b["Notes"] = BOSS_NOTES.get(k, [])
         b["Loot"] = D["loot"]["bosses"].get(k)
 D["bosses"]["groupOrder"] = ["Raid Gate", "Eclipse Trials", "The Abyss", "Elder Gate", "The Broodhollow", "Rootdeep", "Goblin Fort", "Goblin Kingdom"]

@@ -1853,6 +1853,7 @@
    "Barkwarden",
    "Gnarlroot",
    "Hivewarden",
+   "QueenBee",
    "Warchief",
    "Siegemaster",
    "Hexblade",
@@ -3161,6 +3162,56 @@
      "Trim": "#221a14",
      "Accent": "#fad278"
     }
+   },
+   "QueenBee": {
+    "Tier": "Ancient",
+    "Shop": "Boss",
+    "Drop": "QueenBee",
+    "Display": "Royal Hive",
+    "Bonus": 1900,
+    "Perk": "Hits stick with honey, 15% of hits call a royal swarm that stings every foe nearby",
+    "Pieces": {
+     "Helmet": {
+      "Slot": "Helmet",
+      "Defense": 0.22,
+      "Name": "Vespera's Crown",
+      "Drop": "QueenBee",
+      "Price": 0,
+      "Tier": "Ancient",
+      "Shop": "Boss",
+      "Set": "QueenBee"
+     },
+     "Chestplate": {
+      "Slot": "Chestplate",
+      "Defense": 0.31,
+      "Name": "Vespera's Royal Mantle",
+      "Drop": "QueenBee",
+      "Price": 0,
+      "Tier": "Ancient",
+      "Shop": "Boss",
+      "Set": "QueenBee"
+     },
+     "Greaves": {
+      "Slot": "Greaves",
+      "Defense": 0.22,
+      "Name": "Vespera's Gilded Striders",
+      "Drop": "QueenBee",
+      "Price": 0,
+      "Tier": "Ancient",
+      "Shop": "Boss",
+      "Set": "QueenBee"
+     }
+    },
+    "Look": {
+     "Glow": "#c85aff",
+     "TrimMaterial": "Fabric",
+     "Main": "#f0ba30",
+     "Trim": "#6e3696",
+     "Horn": "#ffd65a",
+     "Material": "SmoothPlastic",
+     "Style": "Brood",
+     "Accent": "#ffe278"
+    }
    }
   }
  },
@@ -3183,6 +3234,7 @@
    "Thousand-Leg Bulwark",
    "Heartwood Aegis",
    "Honeycomb Bulwark",
+   "Vespera's Royal Comb",
    "Kragmaw's Skullwall",
    "Powderkeg Bulwark",
    "Hexmirror Ward",
@@ -3479,6 +3531,22 @@
     "Speed": 0.82,
     "Block": 0.95,
     "Perk": "Parries splash sticky honey: everything nearby is hurt and slowed"
+   },
+   "Vespera's Royal Comb": {
+    "ParryBurst": {
+     "Radius": 18,
+     "Damage": 540
+    },
+    "ParryFreeze": 3,
+    "Price": 0,
+    "Parry": 0.46,
+    "Shop": "Boss",
+    "Tier": "Ancient",
+    "Drop": "QueenBee",
+    "Speed": 0.84,
+    "Block": 0.97,
+    "Perk": "Parries splash royal honey, blocked hits sting back",
+    "Thorns": 0.5
    }
   }
  },
@@ -4049,6 +4117,11 @@
      "Icon": "🏅",
      "Title": "Rewards",
      "Text": "500,000 gold and the Crown of the World-Tree badge for waking the crown, plus 4 new creatures and 2 new ores for the Collection Book."
+    },
+    {
+     "Icon": "👑",
+     "Title": "Vespera, the Hive Queen",
+     "Text": "A new raid boss in the royal cell on the Beehive (for players whose tree holds the Hive). She dives, spits honey and calls her swarm - in her last phase only the smoke pots keep it off you. Drops the Royal Hive armor set, Vespera's Royal Stinger and Vespera's Royal Comb."
     }
    ]
   },
@@ -4564,7 +4637,18 @@
    "Reward": 200000
   },
   {
-   "Order": 34,
+   "Desc": "Defeat Vespera, the Hive Queen",
+   "Detail": "QueenBee",
+   "Name": "Long Live the Queen",
+   "Tier": "Mythic",
+   "Icon": "🐝",
+   "Id": "QueenBee",
+   "Stat": "Bosses",
+   "Reward": 200000,
+   "Order": 34
+  },
+  {
+   "Order": 35,
    "Desc": "Defeat Kragmaw the Warchief",
    "Detail": "Warchief",
    "Name": "Warbreaker",
@@ -4575,7 +4659,7 @@
    "Reward": 50000
   },
   {
-   "Order": 35,
+   "Order": 36,
    "Desc": "Defeat Gorbag the Siegemaster (Kingdom floor 10)",
    "Detail": "Siegemaster",
    "Name": "Siegebreaker",
@@ -4586,7 +4670,7 @@
    "Reward": 60000
   },
   {
-   "Order": 36,
+   "Order": 37,
    "Desc": "Defeat Nyxa the Hexblade (Kingdom floor 20)",
    "Detail": "Hexblade",
    "Name": "Hexbreaker",
@@ -4597,7 +4681,7 @@
    "Reward": 100000
   },
   {
-   "Order": 37,
+   "Order": 38,
    "Desc": "Defeat Grumhold the Iron Juggernaut (Kingdom floor 30)",
    "Detail": "Juggernaut",
    "Name": "Iron Felled",
@@ -4608,7 +4692,7 @@
    "Reward": 150000
   },
   {
-   "Order": 38,
+   "Order": 39,
    "Desc": "Defeat Zogra the Beastmistress (Kingdom floor 40)",
    "Detail": "Beastmistress",
    "Name": "Boar Breaker",
@@ -4619,7 +4703,7 @@
    "Reward": 200000
   },
   {
-   "Order": 39,
+   "Order": 40,
    "Desc": "Defeat Mogrul the Goblin Emperor (Kingdom floor 50)",
    "Detail": "Emperor",
    "Name": "Regicide",
@@ -4634,7 +4718,7 @@
    "Name": "Into the Kingdom",
    "Tier": "Gold",
    "Id": "Kingdom10",
-   "Order": 40,
+   "Order": 41,
    "Icon": "🏰",
    "Reward": 20000
   },
@@ -4643,7 +4727,7 @@
    "Name": "Deep Delver",
    "Tier": "Gold",
    "Id": "Kingdom25",
-   "Order": 41,
+   "Order": 42,
    "Icon": "🕳️",
    "Reward": 60000
   },
@@ -4652,7 +4736,7 @@
    "Name": "Throne Room",
    "Tier": "Mythic",
    "Id": "Kingdom50",
-   "Order": 42,
+   "Order": 43,
    "Icon": "👑",
    "Reward": 200000
   },
@@ -4661,7 +4745,7 @@
    "Name": "Beyond the Throne",
    "Tier": "Mythic",
    "Id": "Kingdom75",
-   "Order": 43,
+   "Order": 44,
    "Icon": "🔥",
    "Reward": 350000
   },
@@ -4670,14 +4754,14 @@
    "Name": "Endless",
    "Tier": "Mythic",
    "Id": "Kingdom100",
-   "Order": 44,
+   "Order": 45,
    "Icon": "♾️",
    "Reward": 500000
   },
   {
    "Id": "Bosses25",
    "Desc": "Win 25 raid boss fights",
-   "Order": 45,
+   "Order": 46,
    "Name": "Raid Veteran",
    "Tier": "Gold",
    "Icon": "🛡️",
@@ -4688,7 +4772,7 @@
   {
    "Id": "Bosses100",
    "Desc": "Win 100 raid boss fights",
-   "Order": 46,
+   "Order": 47,
    "Name": "Raid Master",
    "Tier": "Mythic",
    "Icon": "🏆",
@@ -4701,7 +4785,7 @@
    "Id": "AllBosses",
    "Name": "Slayer of Legends",
    "Tier": "Mythic",
-   "Order": 47,
+   "Order": 48,
    "All": [
     "GoblinKing",
     "Golem",
@@ -4723,7 +4807,7 @@
   {
    "Id": "Gold10k",
    "Desc": "Earn 10,000 gold selling ore",
-   "Order": 48,
+   "Order": 49,
    "Name": "Pocket Change",
    "Tier": "Bronze",
    "Icon": "💵",
@@ -4734,7 +4818,7 @@
   {
    "Id": "Gold100k",
    "Desc": "Earn 100,000 gold selling ore",
-   "Order": 49,
+   "Order": 50,
    "Name": "Merchant",
    "Tier": "Silver",
    "Icon": "🪙",
@@ -4745,7 +4829,7 @@
   {
    "Id": "Gold1M",
    "Desc": "Earn 1,000,000 gold selling ore",
-   "Order": 50,
+   "Order": 51,
    "Name": "Tycoon",
    "Tier": "Gold",
    "Icon": "💰",
@@ -4756,7 +4840,7 @@
   {
    "Id": "Gold10M",
    "Desc": "Earn 10,000,000 gold selling ore",
-   "Order": 51,
+   "Order": 52,
    "Name": "Gold Baron",
    "Tier": "Mythic",
    "Icon": "👑",
@@ -4769,7 +4853,7 @@
    "Id": "BagMax",
    "Name": "Packrat",
    "Tier": "Gold",
-   "Order": 52,
+   "Order": 53,
    "Special": "BagMax",
    "Icon": "🎒",
    "Reward": 10000
@@ -4777,7 +4861,7 @@
   {
    "Id": "Rebirth1",
    "Desc": "Rebirth for the first time",
-   "Order": 53,
+   "Order": 54,
    "Name": "Born Again",
    "Tier": "Silver",
    "Icon": "🔄",
@@ -4788,7 +4872,7 @@
   {
    "Id": "Rebirth5",
    "Desc": "Rebirth 5 times",
-   "Order": 54,
+   "Order": 55,
    "Name": "Phoenix",
    "Tier": "Gold",
    "Icon": "🔥",
@@ -4799,7 +4883,7 @@
   {
    "Id": "Rebirth10",
    "Desc": "Rebirth 10 times",
-   "Order": 55,
+   "Order": 56,
    "Name": "Eternal Miner",
    "Tier": "Mythic",
    "Icon": "🌟",
@@ -4812,7 +4896,7 @@
    "Id": "Prophecy",
    "Name": "Chosen One",
    "Tier": "Mythic",
-   "Order": 56,
+   "Order": 57,
    "Special": "Prophecy",
    "Icon": "🔮",
    "Reward": 10000
@@ -4822,7 +4906,7 @@
    "Id": "VoidQuest",
    "Name": "Void Walker",
    "Tier": "Mythic",
-   "Order": 57,
+   "Order": 58,
    "Special": "VoidQuest",
    "Icon": "🕳️",
    "Reward": 50000
@@ -4832,7 +4916,7 @@
    "Id": "SkyQuest",
    "Name": "Cloud Strider",
    "Tier": "Gold",
-   "Order": 58,
+   "Order": 59,
    "Special": "SkyQuest",
    "Icon": "🪽",
    "Reward": 30000
@@ -4842,7 +4926,7 @@
    "Id": "BroodQuest",
    "Name": "Brood Breaker",
    "Tier": "Mythic",
-   "Order": 59,
+   "Order": 60,
    "Special": "BroodQuest",
    "Icon": "🕸️",
    "Reward": 75000
@@ -4852,7 +4936,7 @@
    "Id": "RootQuest",
    "Name": "Keeper of the Root",
    "Tier": "Mythic",
-   "Order": 60,
+   "Order": 61,
    "Special": "RootQuest",
    "Icon": "🌿",
    "Reward": 100000
@@ -4865,14 +4949,14 @@
    "Special": "TreeQuest",
    "Icon": "🌳",
    "Reward": 150000,
-   "Order": 61
+   "Order": 62
   },
   {
    "Desc": "Complete every questline",
    "Id": "AllQuests",
    "Name": "Loremaster",
    "Tier": "Mythic",
-   "Order": 62,
+   "Order": 63,
    "All": [
     "Prophecy",
     "VoidQuest",
@@ -4888,7 +4972,7 @@
    "Id": "Enchant",
    "Name": "Spellbound",
    "Tier": "Bronze",
-   "Order": 63,
+   "Order": 64,
    "Special": "Enchant",
    "Icon": "✨",
    "Reward": 500
@@ -4898,7 +4982,7 @@
    "Id": "EnchantMythic",
    "Name": "Mythic Touch",
    "Tier": "Mythic",
-   "Order": 64,
+   "Order": 65,
    "Special": "EnchantMythic",
    "Icon": "🪄",
    "Reward": 20000
@@ -4908,7 +4992,7 @@
    "Id": "Fortify",
    "Name": "Apprentice Smith",
    "Tier": "Bronze",
-   "Order": 65,
+   "Order": 66,
    "Special": "Fortify",
    "Icon": "🔨",
    "Reward": 500
@@ -4918,7 +5002,7 @@
    "Id": "Fortify10",
    "Name": "Master Smith",
    "Tier": "Gold",
-   "Order": 66,
+   "Order": 67,
    "Special": "Fortify10",
    "Icon": "⚒️",
    "Reward": 25000
@@ -4928,7 +5012,7 @@
    "Id": "Bloomforged",
    "Name": "Bloomforged",
    "Tier": "Mythic",
-   "Order": 67,
+   "Order": 68,
    "Special": "Bloomforged",
    "Icon": "🌺",
    "Reward": 100000
@@ -4938,7 +5022,7 @@
    "Id": "Grown",
    "Name": "Proud Owner",
    "Tier": "Silver",
-   "Order": 68,
+   "Order": 69,
    "Special": "Grown",
    "Icon": "🐾",
    "Reward": 2000
@@ -4948,7 +5032,7 @@
    "Id": "Pets10",
    "Name": "Menagerie",
    "Tier": "Silver",
-   "Order": 69,
+   "Order": 70,
    "Special": "Pets10",
    "Icon": "🦊",
    "Reward": 5000
@@ -4958,7 +5042,7 @@
    "Id": "PetSlots4",
    "Name": "Pack Leader",
    "Tier": "Gold",
-   "Order": 70,
+   "Order": 71,
    "Special": "PetSlots4",
    "Icon": "🐺",
    "Reward": 20000
@@ -4968,7 +5052,7 @@
    "Id": "BookPage",
    "Name": "Collector",
    "Tier": "Gold",
-   "Order": 71,
+   "Order": 72,
    "Special": "BookPage",
    "Icon": "📖",
    "Reward": 25000
@@ -4978,7 +5062,7 @@
    "Id": "BookAll",
    "Name": "Completionist",
    "Tier": "Mythic",
-   "Order": 72,
+   "Order": 73,
    "Special": "BookAll",
    "Icon": "📚",
    "Reward": 250000
@@ -4988,7 +5072,7 @@
    "Id": "Streak7",
    "Name": "Loyal Miner",
    "Tier": "Gold",
-   "Order": 73,
+   "Order": 74,
    "Special": "Streak7",
    "Icon": "📅",
    "Reward": 5000
@@ -5007,7 +5091,7 @@
     "title": "Ores"
    },
    {
-    "count": 43,
+    "count": 44,
     "perk": {
      "Value": 1.1,
      "Text": "+10% damage to monsters and bosses",
@@ -5017,7 +5101,7 @@
     "title": "Creatures"
    },
    {
-    "count": 109,
+    "count": 112,
     "perk": {
      "Value": 1.1,
      "Text": "+10% mining power",
@@ -5726,6 +5810,7 @@
    "StormTitan",
    "Centipede",
    "Gnarlroot",
+   "QueenBee",
    "Warchief",
    "Siegemaster",
    "Hexblade",
@@ -5752,7 +5837,8 @@
     "StormTitan"
    ],
    "Root": [
-    "Gnarlroot"
+    "Gnarlroot",
+    "QueenBee"
    ],
    "Abyss": [
     "Abyss"
@@ -5977,6 +6063,18 @@
     "Arena": "The Deep Burrow",
     "Title": "Wyrm of the Brood",
     "Reward": 400000
+   },
+   "QueenBee": {
+    "Portal": "Root",
+    "Color": "#ffc432",
+    "Difficulty": "Ancient",
+    "Name": "Vespera, the Hive Queen",
+    "Recommended": "Full Waking Tree gear - and friends",
+    "Health": 175000,
+    "Arena": "The Royal Chamber",
+    "Title": "Mother of the Swarm",
+    "Reward": 750000,
+    "Tree": true
    }
   }
  },
@@ -6009,6 +6107,7 @@
    "Rootcleaver",
    "Gnarlroot's Heartbranch",
    "Hivestinger Lance",
+   "Vespera's Royal Stinger",
    "Kragmaw's Warcleaver",
    "Gorbag's Blastmaul",
    "Nyxa's Hexfang",
@@ -6458,6 +6557,27 @@
      "Ticks": 6,
      "Interval": 0.5
     }
+   },
+   "Vespera's Royal Stinger": {
+    "Price": 0,
+    "Damage": 600,
+    "Range": 14,
+    "Arc": 140,
+    "Grip": 2.4,
+    "Shop": "Boss",
+    "Style": "Fang",
+    "Drop": "QueenBee",
+    "Color": "#ffc432",
+    "Tier": "Ancient",
+    "Venom": {
+     "Share": 0.3,
+     "Ticks": 6,
+     "Interval": 0.5
+    },
+    "FinisherBurst": {
+     "Radius": 15,
+     "Stun": 1.2
+    }
    }
   }
  },
@@ -6885,6 +7005,11 @@
     "Gear": "Thousand-Leg Bulwark",
     "Set": "Vesskar",
     "Weapon": "Vesskar's Spine"
+   },
+   "QueenBee": {
+    "Gear": "Vespera's Royal Comb",
+    "Set": "QueenBee",
+    "Weapon": "Vespera's Royal Stinger"
    }
   }
  }
