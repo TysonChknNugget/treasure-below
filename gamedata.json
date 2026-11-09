@@ -1852,6 +1852,7 @@
    "Vesskar",
    "Barkwarden",
    "Gnarlroot",
+   "Hivewarden",
    "Warchief",
    "Siegemaster",
    "Hexblade",
@@ -3110,6 +3111,56 @@
     },
     "Perk": "25% less damage, can't be knocked back",
     "Bonus": 1150
+   },
+   "Hivewarden": {
+    "Display": "Hivewarden",
+    "Shop": "Tree",
+    "Tree": true,
+    "Tier": "Ancient",
+    "Bonus": 1500,
+    "Perk": "Hits stick with honey, every 5th hit a swarm stings nearby foes",
+    "Pieces": {
+     "Helmet": {
+      "Slot": "Helmet",
+      "Shop": "Tree",
+      "Tree": true,
+      "Name": "Hivewarden Helm",
+      "Set": "Hivewarden",
+      "Price": 1500000,
+      "Tier": "Ancient",
+      "Defense": 0.21
+     },
+     "Chestplate": {
+      "Slot": "Chestplate",
+      "Shop": "Tree",
+      "Tree": true,
+      "Name": "Hivewarden Waxplate",
+      "Set": "Hivewarden",
+      "Price": 2400000,
+      "Tier": "Ancient",
+      "Defense": 0.3
+     },
+     "Greaves": {
+      "Slot": "Greaves",
+      "Shop": "Tree",
+      "Tree": true,
+      "Name": "Hivewarden Striders",
+      "Set": "Hivewarden",
+      "Price": 1500000,
+      "Tier": "Ancient",
+      "Defense": 0.21
+     }
+    },
+    "Look": {
+     "Style": "Brood",
+     "TrimMaterial": "SmoothPlastic",
+     "Glow": "#ffbe32",
+     "Main": "#e2a028",
+     "Horn": "#221a14",
+     "Material": "SmoothPlastic",
+     "Trim": "#221a14",
+     "Accent": "#fad278"
+    }
    }
   }
  },
@@ -3131,6 +3182,7 @@
    "Thunderwall",
    "Thousand-Leg Bulwark",
    "Heartwood Aegis",
+   "Honeycomb Bulwark",
    "Kragmaw's Skullwall",
    "Powderkeg Bulwark",
    "Hexmirror Ward",
@@ -3412,6 +3464,21 @@
     "Block": 0.96,
     "Perk": "Parries burst into thorns, blocked hits bite back",
     "Thorns": 0.6
+   },
+   "Honeycomb Bulwark": {
+    "ParryBurst": {
+     "Radius": 17,
+     "Damage": 420
+    },
+    "ParryFreeze": 2.5,
+    "Price": 6000000,
+    "Parry": 0.44,
+    "Shop": "Tree",
+    "Tree": true,
+    "Tier": "Ancient",
+    "Speed": 0.82,
+    "Block": 0.95,
+    "Perk": "Parries splash sticky honey: everything nearby is hurt and slowed"
    }
   }
  },
@@ -3972,6 +4039,11 @@
      "Icon": "⛏️",
      "Title": "Bumbleworth's Honeyworks",
      "Text": "A new shop by Oakhollow, run by Bumbleworth the Beekeeper. Four new pickaxes with their own forms: Heartamber (amber shards, crystal shatter), Snapjaw (a giant flytrap), Hivequeen (ride a giant bee) and Galeleaf (ride a whirlwind). Unlocked by finishing The Waking Tree."
+    },
+    {
+     "Icon": "🛡️",
+     "Title": "Hivewarden gear",
+     "Text": "Bumbleworth also sells the Hivewarden armor set (hits stick with honey, every 5th hit a swarm stings nearby foes), the Hivestinger Lance (a venomous stinger that pierces a line) and the Honeycomb Bulwark (parries splash sticky honey)."
     },
     {
      "Icon": "🏅",
@@ -4945,7 +5017,7 @@
     "title": "Creatures"
    },
    {
-    "count": 106,
+    "count": 109,
     "perk": {
      "Value": 1.1,
      "Text": "+10% mining power",
@@ -5936,6 +6008,7 @@
    "Vesskar's Spine",
    "Rootcleaver",
    "Gnarlroot's Heartbranch",
+   "Hivestinger Lance",
    "Kragmaw's Warcleaver",
    "Gorbag's Blastmaul",
    "Nyxa's Hexfang",
@@ -6367,6 +6440,24 @@
     "Splash": 13,
     "Color": "#ff7832",
     "Damage": 430
+   },
+   "Hivestinger Lance": {
+    "Price": 8000000,
+    "Range": 15,
+    "Grip": 2.8,
+    "Damage": 500,
+    "Shop": "Tree",
+    "Tree": true,
+    "Style": "Thrust",
+    "Tier": "Ancient",
+    "Pierce": 6,
+    "Width": 4,
+    "Color": "#ffc832",
+    "Venom": {
+     "Share": 0.3,
+     "Ticks": 6,
+     "Interval": 0.5
+    }
    }
   }
  },
