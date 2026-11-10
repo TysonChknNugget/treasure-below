@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Treasure Below Wiki</title>
+<meta name="robots" content="noai, noimageai">
 <meta name="description" content="The Treasure Below wiki: every pickaxe, ore, weapon, shield, armor set, enchant, spell, boss, monster, pet, quest and badge in the Roblox mining RPG.">
 <meta property="og:title" content="Treasure Below Wiki">
 <meta property="og:description" content="Every pickaxe, ore, enchant, boss and pet in Treasure Below, the medieval mining RPG on Roblox.">
@@ -252,7 +253,7 @@ function route() {
   current = page;
   const render = PAGES[page] || PAGES.home;
   closeDrawer();
-  $("#main").innerHTML = `<div class="page">${render(arg)}</div><footer>All numbers come straight from the game's data as of ${esc(G.updates[0]?.Title || "the latest")} update. Balance can change in future updates.</footer>`;
+  $("#main").innerHTML = `<div class="page">${render(arg)}</div><footer>All numbers come straight from the game's data as of ${esc(G.updates[0]?.Title || "the latest")} update. Balance can change in future updates.<br>© 2026 TysonChknNugget. All rights reserved. Do not copy or re-host this wiki.</footer>`;
   document.querySelectorAll("nav.tabs a").forEach(a => a.classList.toggle("on", a.dataset.r === (page === "boss" ? "bosses" : page)));
   const on = document.querySelector("nav.tabs a.on");
   if (on && window.innerWidth <= 860) on.scrollIntoView({ inline: "center", block: "nearest" });
