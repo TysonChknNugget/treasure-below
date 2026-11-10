@@ -13,7 +13,7 @@ D = json.loads((HERE / "gamedata.json").read_text(encoding="utf-8"))
 
 ZONES = [
     {"name": "Town", "unlock": "Open from the start", "color": "uncommon",
-     "text": "The hub. Whiskers' Wares sells pickaxes, weapons, shields and armor. Here are the Enchanter's Altar, Grimbold's Forge, the Hatchery, Pip's Packs, the Raid Gate, the Elder Gate and the Hall of Fame leaderboards."},
+     "text": "The hub. Whiskers' Wares sells pickaxes, weapons, shields and armor. Here are the Enchanter's Altar, Grimbold's Forge, Granny Hexley's hut (magic and spells, just east of the plaza), the Hatchery, Pip's Packs, the Raid Gate, the Elder Gate and the Hall of Fame leaderboards."},
     {"name": "The Deep Mines", "unlock": "Open from the start", "color": "common",
      "text": "The cave under town: the Hollow, the Grand Cavern, the Grotto and the Depths. Goblins and Goblin Brutes guard the richer chambers.",
      "monsters": ["Goblin", "Brute"]},

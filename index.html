@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Treasure Below Wiki</title>
-<meta name="description" content="The Treasure Below wiki: every pickaxe, ore, weapon, shield, armor set, enchant, boss, monster, pet, quest and badge in the Roblox mining RPG.">
+<meta name="description" content="The Treasure Below wiki: every pickaxe, ore, weapon, shield, armor set, enchant, spell, boss, monster, pet, quest and badge in the Roblox mining RPG.">
 <meta property="og:title" content="Treasure Below Wiki">
 <meta property="og:description" content="Every pickaxe, ore, enchant, boss and pet in Treasure Below, the medieval mining RPG on Roblox.">
 <meta property="og:image" content="thumbnail.png">
@@ -184,7 +184,7 @@ footer { color: var(--faint); font-size: .85rem; margin-top: 30px; max-width: 11
 <header class="top">
   <a class="brand" href="#home"><img src="icon.png" alt=""><span class="word">Treasure Below</span> <small>Wiki</small></a>
   <div class="search">
-    <input id="q" type="search" placeholder="Search pickaxes, enchants, bosses…" autocomplete="off" aria-label="Search the wiki">
+    <input id="q" type="search" placeholder="Search pickaxes, spells, bosses…" autocomplete="off" aria-label="Search the wiki">
     <div class="results" id="results" hidden></div>
   </div>
   <a class="play" href="https://www.roblox.com/games/139847927971793" target="_blank" rel="noopener">Play on Roblox</a>
@@ -230,7 +230,7 @@ function price(it) { return it.Shop === "Boss" ? "Drop only" : it.Price ? fmt(it
 const NAV = [
   ["Start", [["home", "Home"], ["updates", "Updates"], ["zones", "World"], ["controls", "Controls"]]],
   ["Mining", [["ores", "Ores"], ["pickaxes", "Pickaxes"]]],
-  ["Gear", [["weapons", "Weapons"], ["shields", "Shields"], ["armor", "Armor sets"], ["enchants", "Enchants"]]],
+  ["Gear", [["weapons", "Weapons"], ["shields", "Shields"], ["armor", "Armor sets"], ["enchants", "Enchants"], ["spells", "Spells"]]],
   ["Fighting", [["bosses", "Bosses"], ["kingdom", "Goblin Kingdom"], ["monsters", "Monsters"]]],
   ["Progress", [["pets", "Pets & eggs"], ["quests", "Questlines"], ["badges", "Badges"], ["systems", "Forge, bags & more"]]],
 ];
@@ -312,7 +312,7 @@ const kv = pairs => `<dl class="kv">${pairs.filter(p => p && p[1] != null && p[1
 // ---------------------------------------------------------------- home
 PAGES.home = () => {
   const up = G.updates[0];
-  const quick = [["pickaxes", "Pickaxes", G.pickaxes.order.length + " pickaxes"], ["enchants", "Enchants", (G.enchants.weaponOrder.length + G.enchants.pickaxeOrder.length) + " enchants"], ["bosses", "Bosses", G.bosses.order.length + " bosses"], ["ores", "Ores", G.ores.order.length + " ores"], ["weapons", "Weapons", G.weapons.order.length + " weapons"], ["pets", "Pets", G.pets.order.filter(p => !G.pets.items[p].Hidden).length + " pets"], ["armor", "Armor", G.armor.order.length + " sets"], ["badges", "Badges", G.badges.length + " badges"]];
+  const quick = [["pickaxes", "Pickaxes", G.pickaxes.order.length + " pickaxes"], ["enchants", "Enchants", (G.enchants.weaponOrder.length + G.enchants.pickaxeOrder.length) + " enchants"], ["bosses", "Bosses", G.bosses.order.length + " bosses"], ["ores", "Ores", G.ores.order.length + " ores"], ["weapons", "Weapons", G.weapons.order.length + " weapons"], ["pets", "Pets", G.pets.order.filter(p => !G.pets.items[p].Hidden).length + " pets"], ["armor", "Armor", G.armor.order.length + " sets"], ["spells", "Spells", G.spells.order.length + " spells"], ["badges", "Badges", G.badges.length + " badges"]];
   return `
   <section class="hero">
     <span class="label">The official wiki</span>
@@ -499,6 +499,37 @@ OPENERS.enchants = k => {
     ${raw.length ? `<span class="label">Numbers</span>${kv(raw)}` : ""}`);
 };
 
+
+// ---------------------------------------------------------------- spells
+let spellTier = "All";
+const pctOf = p => (p * 100).toFixed(p < 0.01 ? 2 : 1) + "%";
+PAGES.spells = () => {
+  const S = G.spells;
+  const rows = S.order.map((k, i) => { const s = S.items[k]; return { _key: k, i, name: k, icon: s.Icon, tier: s.Rarity, chance: S.chances[k] || 0, cd: s.Cooldown, desc: s.Description }; }).filter(r => spellTier === "All" || r.tier === spellTier);
+  const c = S.rollCost;
+  return `<div class="head"><span class="label">Gear</span><h1>Spells</h1><p>Granny Hexley the Witch lives in a crooked hut in the grove just east of the town plaza. Pay her <b>${fmt(S.learnCost)} gold</b> once to learn magic. That doesn't give you a spell: you roll your magic power at her cauldron, like an enchant. Each brew costs <b>${fmt(c.Gold)} gold + ${c.OreAmount} ${esc(c.Ore)}s</b> and replaces your spell. Cast it with <kbd>G</kbd> (R3 on a controller, the Cast button on mobile).</p>
+  <p>Spell damage is a share of your equipped weapon's damage: a 300% spell with a 500-damage weapon hits for 1,500. Stuns, freezes and pulls don't work on bosses.</p></div>
+  <div class="filters">
+    ${["All", ...S.tiers].map(t => `<button class="${spellTier === t ? "on" : ""}" onclick="spellTier='${t}';route()">${t}</button>`).join("")}
+  </div>
+  ${table("t-spell", [
+    { label: "Spell", html: r => `${dot(r.tier)}<span class="name">${esc(r.icon)} ${esc(r.name)}</span>`, sort: r => r.i },
+    { label: "Rarity", html: r => chip(r.tier), sort: r => tierRank(r.tier) },
+    { label: "Chance", num: 1, key: "chance", html: r => pctOf(r.chance) },
+    { label: "Cooldown", num: 1, key: "cd", html: r => r.cd + "s" },
+    { label: "What it does", wrap: 1, key: "desc" },
+  ], rows, k => openItem("spells", k))}`;
+};
+OPENERS.spells = k => {
+  const s = G.spells.items[k]; if (!s) return;
+  const skip = new Set(["Rarity", "Color", "Description", "Weight", "Icon", "Target", "Cooldown"]);
+  const raw = Object.entries(s).filter(([a, v]) => !skip.has(a) && typeof v !== "object").map(([a, v]) => [a.replace(/([a-z])([A-Z])/g, "$1 $2"), esc(v)]);
+  openDrawer(`<div class="eyebrow">${chip(s.Rarity)}<span class="label">Spell</span></div><h2>${esc(s.Icon)} ${esc(k)}</h2>
+    <div class="desc" style="--c:${s.Color}">${esc(s.Description)}</div>
+    ${kv([["Rarity", esc(s.Rarity)], ["Brew chance", pctOf(G.spells.chances[k])], ["Cooldown", s.Cooldown + " seconds"], ["Aim", s.Target === "Self" ? "Around you" : "Where you aim (up to " + s.Range + " studs)"], ["Where", "Granny Hexley's cauldron, east of the town plaza"]])}
+    ${raw.length ? `<span class="label">Numbers</span>${kv(raw)}<p class="note">Power is a multiple of your weapon's damage.</p>` : ""}`);
+};
+
 // ---------------------------------------------------------------- bosses
 PAGES.bosses = () => {
   const max = 200000;
@@ -647,8 +678,8 @@ PAGES.systems = () => {
 
 // ---------------------------------------------------------------- controls
 PAGES.controls = () => `<div class="head"><span class="label">Start</span><h1>Controls</h1><p>Every action can be rebound in the Keys menu. Controllers get a free-moving menu cursor, and phones get a ring of touch buttons.</p></div>
-  <div class="card">${kv([["<kbd>Click</kbd>", "Mine and attack"], ["<kbd>1</kbd> <kbd>2</kbd>", "Pickaxe / weapon"], ["<kbd>F</kbd>", "Block. Raise it just before a hit lands to parry"], ["<kbd>Shift</kbd>", "Sprint (uses stamina)"], ["<kbd>E</kbd>", "Talk, open, use"], ["<kbd>R</kbd>", "Ride your pet (grown pets only)"], ["<kbd>Space</kbd>", "Jump. While riding a flyer: take off and climb"], ["<kbd>Ctrl</kbd> / <kbd>Q</kbd>", "Dive while flying"], ["<kbd>B</kbd>", "Inventory"], ["<kbd>P</kbd>", "Pets"], ["<kbd>K</kbd>", "Collection Book"]])}</div>
-  <div class="card"><h3>Xbox</h3><p>Hold LT to block, Y to ride, and click L3 while moving to sprint. Menus use a free-moving cursor.</p></div>`;
+  <div class="card">${kv([["<kbd>Click</kbd>", "Mine and attack"], ["<kbd>1</kbd> <kbd>2</kbd>", "Pickaxe / weapon"], ["<kbd>F</kbd>", "Block. Raise it just before a hit lands to parry"], ["<kbd>G</kbd>", "Cast your spell (learn magic from Granny Hexley)"], ["<kbd>Shift</kbd>", "Sprint (uses stamina)"], ["<kbd>E</kbd>", "Talk, open, use"], ["<kbd>R</kbd>", "Ride your pet (grown pets only)"], ["<kbd>Space</kbd>", "Jump. While riding a flyer: take off and climb"], ["<kbd>Ctrl</kbd> / <kbd>Q</kbd>", "Dive while flying"], ["<kbd>B</kbd>", "Inventory"], ["<kbd>P</kbd>", "Pets"], ["<kbd>K</kbd>", "Collection Book"]])}</div>
+  <div class="card"><h3>Xbox</h3><p>Hold LT to block, Y to ride, click R3 to cast your spell, and click L3 while moving to sprint. Menus use a free-moving cursor.</p></div>`;
 
 // ---------------------------------------------------------------- search
 const INDEX = [];
@@ -660,6 +691,8 @@ G.shields.order.forEach(k => add(k, "Shield", "#shields/" + slug(k)));
 G.armor.order.forEach(k => { const s = G.armor.sets[k]; add(s.Display, "Armor set", "#armor/" + slug(k)); ["Helmet", "Chestplate", "Greaves"].forEach(p => add(s.Pieces[p].Name, "Armor", "#armor/" + slug(k))); });
 G.enchants.weaponOrder.forEach(k => add(k, "Weapon enchant", "#enchants/" + slug(k), G.enchants.items[k].Description));
 G.enchants.pickaxeOrder.forEach(k => add(k, "Pickaxe enchant", "#enchants/" + slug(k), G.enchants.items[k].Description));
+G.spells.order.forEach(k => add(k, "Spell", "#spells/" + slug(k), G.spells.items[k].Description));
+add("Granny Hexley", "Witch", "#spells", "magic witch spells cauldron");
 G.bosses.order.forEach(k => add(G.bosses.items[k].Name, "Boss", "#boss/" + slug(k), G.bosses.items[k].Title));
 Object.entries(G.monsters).forEach(([k, m]) => add(m.Name, "Monster", "#monsters/" + slug(k)));
 G.pets.order.filter(k => !G.pets.items[k].Hidden).forEach(k => add(k, "Pet", "#pets/" + slug(k)));
