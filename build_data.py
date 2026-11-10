@@ -116,6 +116,20 @@ BOSS_NOTES = {
     "Emperor": ["The lord of the Kingdom, swinging the Kingsblade.", "Phase 1: Royal Cleave (a huge sweep), Golden Rain and Earthsplitter (he leaps onto a far raider).", "Phase 2 (below 66%): + Imperial Guard (while two or more stand he takes 75% less damage) and Kingsblade Wave (a golden wave down a long line).", "Phase 3 (below 33%): + Royal Decree: the whole floor is struck except three jade circles. Get into one! A Kingdom Champion joins the guard."],
 }
 
+# World events (EventServer): one runs every few minutes for the whole server. "weapon" means the
+# reward is that many times the player's weapon damage (500-damage weapon -> x500).
+EVENTS = [
+    {"name": "Meteor Shower", "time": "2:30", "color": "legendary", "text": "A meteor crashes near town and leaves a crater ringed with rare ore (Sunstone, Moonstone, Mythril and more). Mine it before it cools.", "reward": "The crater's ore"},
+    {"name": "Gold Rush", "time": "1:40", "color": "gold", "text": "Every ore drops double.", "reward": "Double ore"},
+    {"name": "Goblin Invasion", "time": "3:00", "color": "uncommon", "text": "Three waves of goblins and brutes attack from the town gates. Clear every wave in time.", "reward": "250 gold for everyone who fought"},
+    {"name": "Treasure Goblin", "time": "1:30", "color": "gold", "text": "A golden goblin runs loose in the Deep Mines and flees whoever is closest. Every hit shakes coins loose.", "reward": "600-900 gold in coins"},
+    {"name": "Blood Moon", "time": "2:30", "color": "mythic", "text": "The sky turns red. Every monster drops triple gold, and packs of red-glowing blood goblins keep coming at the town gates.", "reward": "Triple coins + 4 x weapon gold per blood goblin"},
+    {"name": "Arcane Surge", "time": "2:00", "color": "epic", "text": "Rare, Epic, Legendary and Mythic enchants and spells are 3 times as likely at the Enchanter's Altar and Granny Hexley's cauldron.", "reward": "Better rolls"},
+    {"name": "Fallen Stars", "time": "2:30", "color": "celestial", "text": "8 stars crash down round town, each with a beam of light you can see from far away. Hold E on one to gather it.", "reward": "25 x weapon gold (at least 300) + 2 sky ores per star"},
+    {"name": "Goblin Caravan", "time": "3:00", "color": "legendary", "text": "A goblin loot wagon rolls once round the edge of town. Guards jump off at two-thirds and one-third health. Break it before it gets away.", "reward": "70 x weapon gold (at least 500) + 3 ores for everyone who hit it"},
+    {"name": "Pet Frenzy", "time": "1:30", "color": "uncommon", "text": "Pets grow 4 times as fast. Put the ones you're raising in your team.", "reward": "Faster growth"},
+]
+
 STYLES = {
     "Flurry": "Fast stabs", "Blade": "Slashes", "Thrust": "Long thrust (hits a line)", "Smash": "Overhead smash (splash)",
     "Archery": "Bow (ranged)", "Whirlwind": "Spinning swings (splash)", "Bolt": "Crossbow (ranged, pierces)",
@@ -139,6 +153,7 @@ for k, where in MONSTER_WHERE.items():
         D["monsters"][k]["Where"] = where
 
 D["zones"] = ZONES
+D["events"] = EVENTS
 D["styles"] = STYLES
 D["kingdom"] = {
     "countdown": 8, "break": 5, "heal": 0.35,
